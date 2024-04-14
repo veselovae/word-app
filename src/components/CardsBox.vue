@@ -14,11 +14,16 @@
         <button class="btn-create-card">
             <img src="../assets/arrow-down-solid.svg" alt="create" />
         </button>
+
+        <AllCards></AllCards>
     </div>
 </template>
 
 <script>
-    export default {};
+    import AllCards from "./AllCards.vue";
+    export default {
+        components: { AllCards },
+    };
 </script>
 
 <style lang="scss" scoped>
