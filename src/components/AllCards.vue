@@ -1,54 +1,48 @@
 <template>
     <div class="all-cards">
-        <div class="card">
-            <img src="../assets/xmark-solid.svg" alt="remove" />
-            <p class="term">term</p>
-            <p class="definition">definition</p>
-        </div>
-        <div class="card">
-            <img src="../assets/xmark-solid.svg" alt="remove" />
-            <p class="term">term</p>
-            <p class="definition">definition</p>
-        </div>
-        <div class="card">
-            <img src="../assets/xmark-solid.svg" alt="remove" />
-            <p class="term">term</p>
-            <p class="definition">definition</p>
-        </div>
-        <div class="card">
-            <img src="../assets/xmark-solid.svg" alt="remove" />
-            <p class="term">term</p>
-            <p class="definition">definition</p>
-        </div>
-        <div class="card">
-            <img src="../assets/xmark-solid.svg" alt="remove" />
-            <p class="term">term</p>
-            <p class="definition">definition</p>
-        </div>
-        <div class="card">
-            <img src="../assets/xmark-solid.svg" alt="remove" />
-            <p class="term">term</p>
-            <p class="definition">definition</p>
+        <div class="card" v-for="(word, idx) of getWords" :key="idx">
+            <img
+                src="../assets/xmark-solid.svg"
+                alt="remove"
+                @click="deleteWord(idx)"
+            />
+            <p class="term">{{ word[0] }}</p>
+            <p class="definition">{{ word[1] }}</p>
         </div>
     </div>
 </template>
 
 <script>
-    export default {};
+    import { mapGetters, mapMutations } from "vuex";
+    export default {
+        computed: mapGetters(["getWords"]),
+        methods: mapMutations(["deleteWord"]),
+    };
 </script>
 
 <style lang="scss" scoped>
     .all-cards {
-        height: 600px;
-        overflow-y: auto;
-        padding-right: 2px;
+        /*max-width: 1067px;*/
+        width: auto;
+        max-height: 693px;
 
-        scrollbar-gutter: stable;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 17px;
+
+        overflow-y: scroll;
+
+        padding-right: 5px;
+        &::-webkit-scrollbar {
+            display: none; /* for Chrome, Safari, and Opera */
+        }
+
+        /*scrollbar-gutter: stable;
         scrollbar-width: thin;
-        scrollbar-color: #efbc75 #fcd8a6;
+        scrollbar-color: #efbc75 #fcd8a6;*/
 
         .card {
-            height: 100px;
+            height: 125px;
             width: 250px;
             border-radius: 10px;
             background-color: #fcd8a6;
@@ -58,12 +52,7 @@
             gap: 20px;
             padding-left: 20px;
             padding-right: 20px;
-            margin-bottom: 15px;
             position: relative;
-
-            &:last-child {
-                margin-bottom: 0;
-            }
 
             img {
                 position: absolute;

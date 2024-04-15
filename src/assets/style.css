@@ -8,11 +8,11 @@
 }
 
 body {
-    padding: 50px 20px;
+    padding: 20px 40px;
     width: 100%;
     min-height: 100vh;
     display: flex;
-    align-items: flex-start;
-    justify-content: center;
+    align-items: center;
+    justify-content: flex-start;
     background-color: #ece6cd;
 }
