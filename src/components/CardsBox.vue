@@ -9,6 +9,7 @@
                         v-model="term"
                         autofocus
                         @keyup.enter="putNewWord()"
+                        @keyup.down="getFocusToDef()"
                         ref="inpTerm"
                     />
                     <label for="term">term</label>
@@ -19,6 +20,8 @@
                         id="definition"
                         v-model="definition"
                         @keyup.enter="putNewWord()"
+                        @keyup.up="getFocusToTerm()"
+                        ref="inpDef"
                     />
                     <label for="definition">definition</label>
                 </div>
@@ -51,6 +54,12 @@
                 this.addWord([this.term, this.definition]);
                 this.term = "";
                 this.definition = "";
+                this.$refs.inpTerm.focus();
+            },
+            getFocusToDef() {
+                this.$refs.inpDef.focus();
+            },
+            getFocusToTerm() {
                 this.$refs.inpTerm.focus();
             },
         },
