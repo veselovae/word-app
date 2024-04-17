@@ -7,7 +7,6 @@
                         type="text"
                         id="term"
                         v-model="term"
-                        autofocus
                         @keyup.enter="putNewWord()"
                         @keyup.down="getFocusToDef()"
                         ref="inpTerm"
@@ -71,6 +70,7 @@
 </script>
 
 <style lang="scss" scoped>
+    @import url("../assets/colors.css");
     .cards-box {
         display: flex;
         flex-direction: column;
@@ -83,7 +83,7 @@
             gap: 17px;
 
             .create-card {
-                background-color: #efbc75;
+                background-color: var(--dark-beige);
                 padding: 13px 20px;
                 border-radius: 10px;
                 min-width: 250px;
@@ -97,21 +97,21 @@
                         width: 100%;
                         font-size: 16px;
                         padding: 3px 0;
-                        color: #1a4a5a;
+                        color: var(--dark-blue);
                         font-weight: 500;
                         background-color: transparent;
                         outline: none;
                         border: 0;
-                        border-bottom: 2px solid #148d8d; /*1a4a5a*/
+                        border-bottom: 2px solid var(--cyan);
                         transition: border-color 0.1s;
 
                         &:focus {
-                            border-color: #1a4a5a;
+                            border-color: var(--dark-blue);
                         }
                     }
 
                     label {
-                        color: #1a4a5a;
+                        color: var(--dark-blue);
                         margin-top: 3px;
                         font-size: 13px;
                         user-select: none;
@@ -130,8 +130,13 @@
                 align-items: center;
                 justify-content: center;
                 border: none;
-                background-color: #efbc75;
+                background-color: var(--beige);
+                transition: background-color 0.2s;
                 cursor: pointer;
+
+                &:hover {
+                    background-color: var(--dark-beige);
+                }
 
                 img {
                     height: 20px;

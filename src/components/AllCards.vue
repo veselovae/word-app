@@ -22,6 +22,7 @@
 </script>
 
 <style lang="scss" scoped>
+    @import url("../assets/colors.css");
     .all-cards {
         /*max-width: 1067px;*/
         width: auto;
@@ -35,7 +36,7 @@
 
         padding-right: 5px;
         &::-webkit-scrollbar {
-            display: none; /* for Chrome, Safari, and Opera */
+            display: none;
         }
 
         /*scrollbar-gutter: stable;
@@ -46,7 +47,7 @@
             height: 125px;
             width: 250px;
             border-radius: 10px;
-            background-color: #fcd8a6;
+            background-color: var(--beige);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -65,8 +66,8 @@
             }
 
             p {
-                border-bottom: 2px solid #efbc75;
-                color: #1a4a5a;
+                border-bottom: 2px solid var(--dark-beige);
+                color: var(--dark-blue);
                 padding-bottom: 3px;
             }
         }

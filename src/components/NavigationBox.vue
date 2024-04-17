@@ -101,6 +101,7 @@
 </script>
 
 <style lang="scss" scoped>
+    @import url("../assets/colors.css");
     nav {
         display: flex;
         flex-direction: column;
@@ -110,13 +111,13 @@
         button {
             width: 125px;
             height: 125px;
-            background-color: #148d8d;
+            background-color: var(--cyan);
             border: 0;
             border-radius: 10px;
             cursor: pointer;
 
             &.active {
-                background-color: #1a4a5a;
+                background-color: var(--dark-blue);
             }
         }
 
