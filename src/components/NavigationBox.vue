@@ -116,6 +116,10 @@
             border-radius: 10px;
             cursor: pointer;
 
+            &:focus-visible {
+                outline: 0;
+            }
+
             &.active {
                 background-color: var(--dark-blue);
             }
