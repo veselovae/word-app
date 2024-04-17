@@ -5,7 +5,7 @@ export default {
             state.words.unshift(arrPair);
         },
         deleteWord(state, idx) {
-            this.state.words.splice(idx, 1);
+            state.words.splice(idx, 1);
         },
     },
     state: {
