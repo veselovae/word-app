@@ -24,5 +24,6 @@
 <style lang="scss" scoped>
     .main {
         display: flex;
+        width: calc(100vw - 80px);
     }
 </style>
