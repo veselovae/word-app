@@ -6,7 +6,7 @@ export default {
         },
     },
     state: {
-        activeComponent: "StudyingByCards",
+        activeComponent: "CardsBox",
     },
     getters: {
         getActiveComponent(state) {

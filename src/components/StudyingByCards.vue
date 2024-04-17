@@ -8,6 +8,11 @@
                 <p>Definition</p>
             </div>
         </div>
+        <div class="buttons">
+            <button class="prev"></button>
+            <button class="flip"></button>
+            <button class="next"></button>
+        </div>
     </div>
 </template>
 
@@ -18,15 +23,19 @@
                 this.$refs.front.classList.toggle("dis");
                 this.$refs.back.classList.toggle("act");
             },
+            flipOnBtn(e) {
+                if (e.key == " ") {
+                    this.rotateCard();
+                }
+            },
         },
         mounted() {
             this.$nextTick(() =>
-                window.addEventListener("keyup", (e) => {
-                    if (e.key == " ") {
-                        this.rotateCard();
-                    }
-                })
+                window.addEventListener("keyup", this.flipOnBtn)
             );
+        },
+        beforeUnmount() {
+            window.removeEventListener("keyup", this.flipOnBtn);
         },
     };
 </script>
@@ -35,11 +44,12 @@
     @import url("../assets/colors.css");
     .container {
         width: 100%;
+        padding-top: calc(125px + 17px);
         .card {
-            margin-top: calc(125px + 17px);
             max-width: 750px;
             position: relative;
             perspective: 1000px;
+            height: 409px;
 
             .back-side-card,
             .front-side-card {
@@ -72,6 +82,9 @@
             .act {
                 transform: rotateX(0) !important;
             }
+        }
+        .buttons {
+            position: relative;
         }
     }
 </style>
