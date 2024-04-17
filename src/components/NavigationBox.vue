@@ -1,9 +1,17 @@
 <template>
     <nav>
-        <button class="nav-btn btn-creation active">
+        <button
+            class="nav-btn btn-creation active"
+            title="create new card"
+            data-component="CardsBox"
+            @click="setActiveComponent($event.currentTarget, 'CardsBox')"
+        >
             <img src="../assets/menu/circle-plus-solid.svg" alt="create" />
         </button>
-        <button class="nav-btn btn-cards">
+        <button
+            class="nav-btn btn-cards"
+            @click="setActiveComponent($event.currentTarget, 'StudyingByCards')"
+        >
             <svg
                 width="70"
                 height="50"
@@ -75,7 +83,22 @@
     </nav>
 </template>
 
-<script></script>
+<script>
+    import { mapMutations } from "vuex";
+    export default {
+        methods: {
+            ...mapMutations(["changeActiveComponent"]),
+            setActiveComponent(target, comp) {
+                this.changeActiveComponent(comp);
+                let btns = document.querySelectorAll(".nav-btn");
+                btns.forEach((btn) => {
+                    btn.classList.remove("active");
+                });
+                target.classList.add("active");
+            },
+        },
+    };
+</script>
 
 <style lang="scss" scoped>
     nav {

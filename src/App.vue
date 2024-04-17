@@ -1,16 +1,23 @@
 <template>
     <div class="main">
         <NavigationBox></NavigationBox>
-        <CardsBox></CardsBox>
+        <!-- <CardsBox style="display: none"></CardsBox>
+        <StudyingByCards style="display: none"></StadyingByCards> -->
+        <component :is="getActiveComponent"></component>
     </div>
 </template>
 
 <script>
-    import CardsBox from "../src/components/CardsBox.vue";
     import NavigationBox from "../src/components/NavigationBox.vue";
+    import CardsBox from "../src/components/CardsBox.vue";
+    import StudyingByCards from "./components/StudyingByCards.vue";
+
+    import { mapGetters } from "vuex";
+
     export default {
         name: "App",
-        components: { CardsBox, NavigationBox },
+        components: { CardsBox, NavigationBox, StudyingByCards },
+        computed: mapGetters(["getActiveComponent"]),
     };
 </script>
 

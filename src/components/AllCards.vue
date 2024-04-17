@@ -4,6 +4,7 @@
             <img
                 src="../assets/xmark-solid.svg"
                 alt="remove"
+                title="delete"
                 @click="deleteWord(idx)"
             />
             <p class="term">{{ word[0] }}</p>

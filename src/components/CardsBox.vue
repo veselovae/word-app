@@ -27,7 +27,11 @@
                 </div>
             </div>
 
-            <button class="btn-create-card" @click="putNewWord()">
+            <button
+                class="btn-create-card"
+                @click="putNewWord()"
+                title="create"
+            >
                 <img src="../assets/arrow-down-solid.svg" alt="create" />
             </button>
         </div>
