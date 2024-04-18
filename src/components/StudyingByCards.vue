@@ -8,10 +8,16 @@
                 <p>Definition</p>
             </div>
         </div>
-        <div class="buttons">
-            <button class="prev"></button>
-            <button class="flip"></button>
-            <button class="next"></button>
+        <div class="buttons-container">
+            <div class="buttons">
+                <button class="btn-prev btn">
+                    <img src="../assets/arrow-down-solid.svg" alt="prev" />
+                </button>
+                <button class="btn-flip btn" @click="rotateCard">flip</button>
+                <button class="btn-next btn">
+                    <img src="../assets/arrow-down-solid.svg" alt="next" />
+                </button>
+            </div>
         </div>
     </div>
 </template>
@@ -60,7 +66,7 @@
                 justify-content: center;
                 align-items: center;
                 position: absolute;
-                transition: 1s;
+                transition: 0.7s;
                 backface-visibility: hidden;
 
                 p {
@@ -83,8 +89,59 @@
                 transform: rotateX(0) !important;
             }
         }
-        .buttons {
+        .buttons-container {
             position: relative;
+            margin-top: 17px;
+            max-width: 750px;
+            .buttons {
+                display: flex;
+                gap: 42px;
+                justify-content: center;
+
+                .btn {
+                    height: 40px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background-color: var(--beige);
+                    transition: background-color 0.2s;
+                    border: 0;
+                    outline: 0;
+
+                    &:hover {
+                        background-color: var(--dark-beige);
+                    }
+                }
+
+                .btn-prev,
+                .btn-next {
+                    width: 40px;
+                    border-radius: 50%;
+
+                    img {
+                        height: 20px;
+                        width: 20px;
+                    }
+                }
+                .btn-prev {
+                    img {
+                        rotate: 90deg;
+                    }
+                }
+
+                .btn-next {
+                    img {
+                        rotate: -90deg;
+                    }
+                }
+
+                .btn-flip {
+                    width: 109px;
+                    border-radius: 50px;
+                    font-size: 25px;
+                    color: var(--dark-blue);
+                }
+            }
         }
     }
 </style>
