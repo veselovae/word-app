@@ -2,19 +2,21 @@
     <div class="container">
         <div class="card" @click="rotateCard">
             <div class="front-side-card" ref="front">
-                <p>Term</p>
+                <p>{{ this.getPairOfWords[0] }}</p>
             </div>
             <div class="back-side-card" ref="back">
-                <p>Definition</p>
+                <p>{{ this.getPairOfWords[1] }}</p>
             </div>
         </div>
         <div class="buttons-container">
             <div class="buttons">
-                <button class="btn-prev btn">
+                <button class="btn-prev btn" @click="getPrevCard" ref="prev">
                     <img src="../assets/arrow-down-solid.svg" alt="prev" />
                 </button>
-                <button class="btn-flip btn" @click="rotateCard">flip</button>
-                <button class="btn-next btn">
+                <button class="btn-flip btn" @click="rotateCard" ref="flip">
+                    flip
+                </button>
+                <button class="btn-next btn" @click="getNextCard" ref="next">
                     <img src="../assets/arrow-down-solid.svg" alt="next" />
                 </button>
             </div>
@@ -23,8 +25,10 @@
 </template>
 
 <script>
+    import { mapGetters, mapMutations } from "vuex";
     export default {
         methods: {
+            ...mapMutations(["resetIndex", "decreaseIndex", "increaseIndex"]),
             rotateCard() {
                 this.$refs.front.classList.toggle("dis");
                 this.$refs.back.classList.toggle("act");
@@ -33,15 +37,40 @@
                 if (e.key == " ") {
                     this.rotateCard();
                 }
+                this.$refs.flip.blur();
+            },
+            getPrevCard() {
+                this.decreaseIndex();
+                this.$refs.prev.blur();
+            },
+            getPrevCardOnBtn(e) {
+                if (e.key == "ArrowLeft") {
+                    this.getPrevCard();
+                }
+            },
+            getNextCard() {
+                this.increaseIndex();
+                this.$refs.next.blur();
+            },
+            getNextCardOnBtn(e) {
+                if (e.key == "ArrowRight") {
+                    this.getNextCard();
+                }
             },
         },
+        computed: mapGetters(["getPairOfWords"]),
         mounted() {
-            this.$nextTick(() =>
-                window.addEventListener("keyup", this.flipOnBtn)
-            );
+            this.$nextTick(() => {
+                this.resetIndex();
+                window.addEventListener("keyup", this.flipOnBtn);
+                window.addEventListener("keyup", this.getPrevCardOnBtn);
+                window.addEventListener("keyup", this.getNextCardOnBtn);
+            });
         },
         beforeUnmount() {
             window.removeEventListener("keyup", this.flipOnBtn);
+            window.removeEventListener("keyup", this.getPrevCardOnBtn);
+            window.removeEventListener("keyup", this.getNextCardOnBtn);
         },
     };
 </script>
