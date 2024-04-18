@@ -3,9 +3,15 @@
         <div class="card" @click="rotateCard">
             <div class="front-side-card" ref="front">
                 <p>{{ this.getPairOfWords[0] }}</p>
+                <div class="count">
+                    <p>{{ getCount }}</p>
+                </div>
             </div>
             <div class="back-side-card" ref="back">
                 <p>{{ this.getPairOfWords[1] }}</p>
+                <div class="count">
+                    <p>{{ getCount }}</p>
+                </div>
             </div>
         </div>
         <div class="buttons-container">
@@ -58,7 +64,7 @@
                 }
             },
         },
-        computed: mapGetters(["getPairOfWords"]),
+        computed: mapGetters(["getPairOfWords", "getCount"]),
         mounted() {
             this.$nextTick(() => {
                 this.resetIndex();
@@ -100,6 +106,17 @@
 
                 p {
                     font-size: 50px;
+                    color: var(--dark-blue);
+                }
+
+                .count {
+                    position: absolute;
+                    right: 15px;
+                    bottom: 10px;
+
+                    p {
+                        font-size: 25px;
+                    }
                 }
             }
             .front-side-card {

@@ -38,8 +38,8 @@ export default {
         getPairOfWords(state) {
             return state.words[state.index];
         },
-        // getCount(state) {
-        //     return `${state.index + 1} / ${state.words.length}`;
-        // },
+        getCount(state) {
+            return `${state.index + 1} / ${state.words.length}`;
+        },
     },
 };
