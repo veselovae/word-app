@@ -17,3 +17,22 @@ body {
     justify-content: flex-start;
     background-color: var(--backgound-color);
 }
+
+.inp-letter {
+    height: 80px;
+    width: 80px;
+    background: transparent;
+    text-align: center;
+    border: 0;
+    outline: 0;
+    border-bottom: 4px solid var(--dark-blue);
+    font-size: 70px;
+    color: var(--dark-blue);
+}
+
+span.letter {
+    transform: translateY(-5px);
+    width: 80px;
+    text-align: center;
+    height: 80px;
+}

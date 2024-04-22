@@ -67,7 +67,10 @@
                 <rect y="24" width="33.2927" height="20" rx="5" fill="white" />
             </svg>
         </button>
-        <button class="nav-btn btn-writing">
+        <button
+            class="nav-btn btn-writing"
+            @click="setActiveComponent($event.currentTarget, 'WritingTraining')"
+        >
             <img src="../assets/menu/pen-solid.svg" alt="write" />
         </button>
         <button class="nav-btn btn-test">

@@ -1,8 +1,6 @@
 <template>
     <div class="main">
         <NavigationBox></NavigationBox>
-        <!-- <CardsBox style="display: none"></CardsBox>
-        <StudyingByCards style="display: none"></StadyingByCards> -->
         <component :is="getActiveComponent"></component>
     </div>
 </template>
@@ -11,12 +9,18 @@
     import NavigationBox from "../src/components/NavigationBox.vue";
     import CardsBox from "../src/components/CardsBox.vue";
     import StudyingByCards from "./components/StudyingByCards.vue";
+    import WritingTraining from "./components/WritingTraining.vue";
 
     import { mapGetters } from "vuex";
 
     export default {
         name: "App",
-        components: { CardsBox, NavigationBox, StudyingByCards },
+        components: {
+            CardsBox,
+            NavigationBox,
+            StudyingByCards,
+            WritingTraining,
+        },
         computed: mapGetters(["getActiveComponent"]),
     };
 </script>
