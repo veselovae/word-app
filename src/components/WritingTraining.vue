@@ -6,7 +6,11 @@
                 <div class="term" ref="term"></div>
             </div>
             <button>
-                <img src="../assets/arrow-down-solid.svg" alt="next word" />
+                <img
+                    src="../assets/arrow-down-solid.svg"
+                    alt="next word"
+                    @click="formWord()"
+                />
             </button>
         </div>
         <div class="count">
@@ -74,6 +78,16 @@
             getSpanWithLetter(letter) {
                 return `<span class='letter'>${letter}</span>`;
             },
+            formWord() {
+                let el = Array.from(this.$refs.term.children);
+                let arr = [];
+                el.forEach((el) => {
+                    if (el.tagName === "SPAN") arr.push(el.innerHTML);
+                    else arr.push(el.value);
+                });
+
+                console.log(arr.join(""));
+            },
         },
         mounted() {
             this.resetIndex();
@@ -108,16 +122,15 @@
                 flex-direction: column;
                 gap: 70px;
                 justify-content: center;
-                padding-left: 67px;
+                padding-left: 40px;
 
                 .definition {
                     font-size: 40px;
                 }
 
                 .term {
-                    font-size: 70px;
                     display: flex;
-                    gap: 10px;
+                    gap: 5px;
                     align-items: flex-end;
                 }
             }
