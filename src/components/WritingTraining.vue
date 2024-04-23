@@ -1,8 +1,13 @@
 <template>
     <div class="container">
-        <div class="card">
-            <p class="definition">{{ this.getPairOfWords[1] }}</p>
-            <div class="term" ref="term"></div>
+        <div class="card-and-button">
+            <div class="card">
+                <p class="definition">{{ this.getPairOfWords[1] }}</p>
+                <div class="term" ref="term"></div>
+            </div>
+            <button>
+                <img src="../assets/arrow-down-solid.svg" alt="next word" />
+            </button>
         </div>
         <div class="count">
             <p>{{ getCount }}</p>
@@ -84,29 +89,55 @@
     .container {
         width: 100%;
         padding-top: calc(125px + 17px);
-        .card {
-            max-width: 750px;
-            position: relative;
-            perspective: 1000px;
-            height: 409px;
-            background-color: var(--dark-beige);
-            border-radius: 30px;
-            color: var(--dark-blue);
+        .card-and-button {
+            /*max-width: 750px;*/
+            max-width: 850px;
             display: flex;
-            flex-direction: column;
-            gap: 70px;
-            justify-content: center;
-            padding-left: 67px;
+            align-items: center;
+            gap: 20px;
+            .card {
+                width: 100%;
+                /*max-width: 750px;*/
+                position: relative;
+                perspective: 1000px;
+                height: 409px;
+                background-color: var(--dark-beige);
+                border-radius: 30px;
+                color: var(--dark-blue);
+                display: flex;
+                flex-direction: column;
+                gap: 70px;
+                justify-content: center;
+                padding-left: 67px;
 
-            .definition {
-                font-size: 40px;
+                .definition {
+                    font-size: 40px;
+                }
+
+                .term {
+                    font-size: 70px;
+                    display: flex;
+                    gap: 10px;
+                    align-items: flex-end;
+                }
             }
 
-            .term {
-                font-size: 70px;
-                display: flex;
-                gap: 10px;
-                align-items: flex-end;
+            button {
+                background-color: var(--beige);
+                border: 0;
+                border-radius: 50%;
+                padding: 10px;
+                transition: background-color 0.2s;
+
+                &:hover {
+                    background-color: var(--dark-beige);
+                }
+
+                img {
+                    height: 50px;
+                    width: 50px;
+                    rotate: -90deg;
+                }
             }
         }
 
