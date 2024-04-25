@@ -9,7 +9,7 @@
                 <img
                     src="../assets/arrow-down-solid.svg"
                     alt="next word"
-                    @click="formWord()"
+                    @click="getNextWord()"
                 />
             </button>
         </div>
@@ -32,13 +32,80 @@
                 let term = this.getPairOfWords[0];
                 let result = this.getArr(term);
                 let html = result.map((el) => {
-                    if (el[0] === "i") return this.getInputBox();
-                    if (el[0] === "s") return this.getSpanWithLetter(el[1]);
+                    if (el[0] === "i") return this.getInputBox(el[2]);
+                    if (el[0] === "s")
+                        return this.getSpanWithLetter(el[1], el[2]);
                 });
                 html.forEach((el) => {
                     this.$refs.term.append(el);
                 });
                 this.$refs.term.innerHTML = html.join("");
+                this.getFocusToFirstInp();
+                this.addEventToInp();
+            },
+            addEventToInp() {
+                let inps = document.querySelectorAll(".inp-letter");
+                inps.forEach((el) => {
+                    el.addEventListener("keyup", this.getFocusToNextInp);
+                });
+            },
+            getFocusToFirstInp() {
+                let first = document.querySelector(".inp-letter");
+                first.focus();
+            },
+            getFocusToNextInp(e) {
+                const curEl = e.target;
+                const idx = curEl.dataset.index;
+                const currentWord = this.getPairOfWords;
+                if (e.key === "Backspace" && idx > 0) {
+                    curEl.previousElementSibling.value = "";
+                    curEl.previousElementSibling.focus();
+
+                    // console.log(idx);
+                    // if (idx === 0) return false;
+                    // curEl.previousElementSibling.focus();
+                }
+                if (e.key === "Backspace") {
+                    if (idx > 0) {
+                        if (curEl.previousElementSibling.tagName === "SPAN") {
+                            let previousSibling = curEl;
+                            let indexOfSibling = idx;
+                            while (
+                                previousSibling.previousElementSibling
+                                    .tagName === "SPAN" &&
+                                indexOfSibling - 1 > 0
+                            ) {
+                                previousSibling =
+                                    previousSibling.previousElementSibling;
+                                indexOfSibling = previousSibling.dataset.index;
+                            }
+                            previousSibling.previousElementSibling.focus();
+                        }
+                    } else if (idx == 0) return false;
+                    // if (curEl.value === "") {
+                    //     curEl.previousElementSibling.value = "";
+                    //     curEl.previousElementSibling.focus();
+                    // }
+                    // console.log(idx);
+                    // if (idx === 0) return false;
+                    // curEl.previousElementSibling.focus();
+                } else {
+                    if (idx < currentWord[0].length - 1) {
+                        if (curEl.nextElementSibling.tagName === "SPAN") {
+                            let nextSibling = curEl.nextElementSibling;
+                            let indexOfSibling = nextSibling.dataset.index;
+                            while (
+                                nextSibling.tagName === "SPAN" &&
+                                indexOfSibling < currentWord[0].length - 1
+                            ) {
+                                nextSibling = nextSibling.nextElementSibling;
+                                indexOfSibling = nextSibling.dataset.index;
+                            }
+                            nextSibling.focus();
+                        }
+                        curEl.nextElementSibling.focus();
+                    }
+                }
             },
             getArr(word) {
                 let res = [];
@@ -65,18 +132,18 @@
                     }
                 }
                 let letters = word.split("");
-                res = res.map((el, index) => [el, letters[index]]);
+                res = res.map((el, index) => [el, letters[index], index]);
 
                 return res;
             },
             getRandom(word) {
                 return Math.floor(Math.random() * word.length);
             },
-            getInputBox() {
-                return `<input class='inp-letter' type='text' maxlength=1>`;
+            getInputBox(idx) {
+                return `<input class='inp-letter' type='text' maxlength=1' data-index=${idx}>`;
             },
-            getSpanWithLetter(letter) {
-                return `<span class='letter'>${letter}</span>`;
+            getSpanWithLetter(letter, idx) {
+                return `<span class='letter' data-index=${idx}>${letter}</span>`;
             },
             formWord() {
                 let el = Array.from(this.$refs.term.children);
