@@ -42,3 +42,32 @@ span.letter {
     text-align: center;
     height: 80px;
 }
+
+.otp-input {
+    width: 40px;
+    height: 40px;
+    padding: 5px;
+    margin: 0 5px;
+    font-size: 28px;
+    color: var(--dark-blue);
+    border: 0;
+    border-bottom: 4px solid var(--dark-blue);
+    background: transparent;
+    text-align: center;
+    outline: 0;
+    transition: border-bottom 0.2s;
+}
+
+.otp-input:focus {
+    border-bottom: 4px solid var(--cyan);
+    caret-color: transparent;
+}
+/* Background colour of an input field with value */
+/* .otp-input.is-complete {
+    background-color: #e4e4e4;
+} */
+.otp-input::-webkit-inner-spin-button,
+.otp-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

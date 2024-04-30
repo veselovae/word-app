@@ -23,10 +23,10 @@ export default {
     },
     state: {
         words: [
+            ["computer", "компьютер"],
             ["home", "дом"],
             ["tree", "дерево"],
             ["girl", "девочка"],
-            ["computer", "компьютер"],
             ["mouse", "мышь"],
         ],
         index: 2,
