@@ -40,7 +40,15 @@
                 />
             </svg>
         </button>
-        <button class="nav-btn btn-choosing">
+        <button
+            class="nav-btn btn-choosing"
+            @click="
+                setActiveComponent(
+                    $event.currentTarget,
+                    'ChoosingTheCorrectTranslation'
+                )
+            "
+        >
             <svg
                 width="70"
                 height="44"

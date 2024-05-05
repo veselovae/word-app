@@ -10,6 +10,7 @@
     import CardsBox from "../src/components/CardsBox.vue";
     import StudyingByCards from "./components/StudyingByCards.vue";
     import WritingTraining from "./components/WritingTraining.vue";
+    import ChoosingTheCorrectTranslation from "./components/ChoosingTheCorrectTranslation.vue";
 
     import { mapGetters } from "vuex";
 
@@ -20,6 +21,7 @@
             NavigationBox,
             StudyingByCards,
             WritingTraining,
+            ChoosingTheCorrectTranslation,
         },
         computed: mapGetters(["getActiveComponent"]),
     };
