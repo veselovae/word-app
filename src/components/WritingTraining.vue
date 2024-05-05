@@ -14,27 +14,41 @@
                         v-model:value="word"
                         :should-auto-focus="true"
                         :should-focus-order="true"
-                        @keyup.enter="getNextWord()"
+                        @keyup.enter="checkWord()"
+                        :isDisabled="dis"
                     />
                 </div>
             </div>
-            <button @click="getNextWord()">
+            <button @click="checkWord()">
                 <img src="../assets/arrow-down-solid.svg" alt="next word" />
             </button>
         </div>
         <div class="count">
             <p>{{ getCount }}</p>
         </div>
+
+        <DymanicPopup v-if="showPopup" :closePopup="closePopup">
+            <template v-slot:yourAnswer>
+                {{ word }}
+            </template>
+            <template v-slot:corect>
+                {{ getPairOfWords[0] }}
+            </template>
+        </DymanicPopup>
     </div>
 </template>
 <script>
     import { mapGetters, mapMutations } from "vuex";
+    import DymanicPopup from "./DynamicPopup.vue";
     export default {
         data() {
             return {
                 word: "",
+                showPopup: false,
+                dis: false,
             };
         },
+        components: { DymanicPopup },
         computed: mapGetters(["getPairOfWords", "getCount"]),
         methods: {
             ...mapMutations(["resetIndex", "increaseIndex"]),
@@ -44,15 +58,25 @@
                     this.getPairOfWords[0].toLowerCase()
                 ) {
                     console.log("true");
+                    this.getNextWord();
                 } else {
-                    console.log("false");
+                    this.showPopup = true;
+                    this.dis = true;
+                    return false;
                 }
+            },
+            closePopup() {
+                this.showPopup = false;
+                this.dis = false;
+                this.getNextWord();
+                // document.querySelector(".otp-input").focus();
             },
             clearInput() {
                 this.$refs.otpInput.clearInput();
             },
             getNextWord() {
-                this.checkWord();
+                // this.checkWord();
+                // let curWord = this.getPairOfWords;
                 this.increaseIndex();
                 this.clearInput();
             },
