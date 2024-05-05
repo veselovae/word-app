@@ -27,7 +27,11 @@
             <p>{{ getCount }}</p>
         </div>
 
-        <DymanicPopup v-if="showPopup" :closePopup="closePopup">
+        <DymanicPopup
+            v-if="showPopup"
+            :closePopup="closePopup"
+            :beforePopupUnmount="beforePopupUnmount"
+        >
             <template v-slot:yourAnswer>
                 {{ word }}
             </template>
@@ -46,7 +50,6 @@
                 word: "",
                 showPopup: false,
                 dis: false,
-                foc: true,
             };
         },
         components: { DymanicPopup },
@@ -54,25 +57,27 @@
         methods: {
             ...mapMutations(["resetIndex", "increaseIndex"]),
             checkWord() {
-                if (
-                    this.word.toLowerCase() ===
-                    this.getPairOfWords[0].toLowerCase()
-                ) {
-                    console.log("true");
-                    this.getNextWord();
-                } else {
-                    this.showPopup = true;
-                    this.dis = true;
-                    return false;
+                if (this.word) {
+                    if (
+                        this.word.toLowerCase() ===
+                        this.getPairOfWords[0].toLowerCase()
+                    ) {
+                        this.getNextWord();
+                    } else {
+                        this.showPopup = true;
+                        this.dis = true;
+                    }
                 }
             },
             closePopup() {
                 this.showPopup = false;
-                this.dis = false;
                 this.getNextWord();
-                let el = document.querySelector(".otp-input-container");
-                el.focus();
+                this.dis = false;
+            },
+            beforePopupUnmount() {
+                let el = document.querySelector(".otp-input");
                 console.log(el);
+                el.focus();
             },
             clearInput() {
                 this.$refs.otpInput.clearInput();

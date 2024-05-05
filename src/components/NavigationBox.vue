@@ -120,7 +120,7 @@
             cursor: pointer;
 
             &:focus-visible {
-                outline: 0;
+                outline: 2px solid var(--dark-blue);
             }
 
             &.active {

@@ -27,9 +27,12 @@
 
 <script>
     export default {
-        props: ["closePopup"],
+        props: ["closePopup", "beforePopupUnmount"],
         mounted() {
             this.$refs.btn.focus();
+        },
+        unmounted() {
+            this.beforePopupUnmount();
         },
     };
 </script>
