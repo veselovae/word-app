@@ -16,7 +16,6 @@
                         class="btn-popup-close"
                         @click="closePopup()"
                         ref="btn"
-                        autofocus
                     >
                         Ok
                     </button>
@@ -29,6 +28,9 @@
 <script>
     export default {
         props: ["closePopup"],
+        mounted() {
+            this.$refs.btn.focus();
+        },
     };
 </script>
 
@@ -86,6 +88,12 @@
                     &:hover {
                         background-color: var(--dark-blue);
                         color: #fff;
+                    }
+
+                    &:focus-visible,
+                    &:focus {
+                        outline: 2px solid var(--dark-blue);
+                        outline-offset: -3px;
                     }
                 }
             }

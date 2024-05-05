@@ -46,6 +46,7 @@
                 word: "",
                 showPopup: false,
                 dis: false,
+                foc: true,
             };
         },
         components: { DymanicPopup },
@@ -69,14 +70,14 @@
                 this.showPopup = false;
                 this.dis = false;
                 this.getNextWord();
-                // document.querySelector(".otp-input").focus();
+                let el = document.querySelector(".otp-input-container");
+                el.focus();
+                console.log(el);
             },
             clearInput() {
                 this.$refs.otpInput.clearInput();
             },
             getNextWord() {
-                // this.checkWord();
-                // let curWord = this.getPairOfWords;
                 this.increaseIndex();
                 this.clearInput();
             },
