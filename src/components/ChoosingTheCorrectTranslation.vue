@@ -5,15 +5,16 @@
                 <p>{{ getPairOfWords[0] }}</p>
             </div>
             <div class="answers-wrap">
-                <span
+                <button
                     class="answer-wrap"
                     v-for="(word, idx) in getCorrectAndRandomAnswers"
                     :key="idx"
-                    @click="checkWord(word[1])"
+                    :data-correct="word[1]"
+                    @click="checkWord($event.currentTarget)"
                 >
                     <span class="idx">{{ idx + 1 }}.</span>
                     <span class="answer">{{ word[0] }}</span>
-                </span>
+                </button>
             </div>
 
             <div class="count-wrap">
@@ -34,8 +35,41 @@
         ]),
         methods: {
             ...mapMutations(["resetIndex", "increaseIndex"]),
-            checkWord(word) {
-                console.log(word);
+            checkWord(el) {
+                console.log(el);
+                const selectedBtn = el;
+                const isCorrect = el.dataset.correct === "true";
+                if (isCorrect) {
+                    selectedBtn.classList.add("correct");
+                } else {
+                    selectedBtn.classList.add("incorrect");
+                }
+
+                document.querySelectorAll(".answer-wrap").forEach((btn) => {
+                    if (btn.dataset.correct === "true") {
+                        btn.classList.add("correct");
+                    }
+                    btn.disabled = true;
+                    btn.style.cursor = "not-allowed";
+                });
+                setTimeout(() => {
+                    document.querySelectorAll(".answer-wrap").forEach((btn) => {
+                        let bntClassList = Array.from(btn.classList);
+                        if (bntClassList.includes("correct")) {
+                            btn.classList.remove("correct");
+                        } else if (bntClassList.includes("incorrect")) {
+                            btn.classList.remove("incorrect");
+                        }
+                    });
+                    this.showNextWord();
+                }, 1000);
+            },
+            showNextWord() {
+                document.querySelectorAll(".answer-wrap").forEach((btn) => {
+                    btn.disabled = false;
+                    btn.style.cursor = "pointer";
+                });
+                this.increaseIndex();
             },
         },
         mounted() {
@@ -71,9 +105,9 @@
                 align-items: start;
                 gap: calc(var(--size-elem-nav) / 2 + 17px) 70px;
 
-                span.answer-wrap {
+                button.answer-wrap {
                     background-color: var(--beige);
-                    transition: background-color 0.2s;
+                    transition: all 0.2s;
                     width: 340px;
                     border-radius: 10px;
                     min-height: calc(var(--size-elem-nav) / 2);
@@ -82,14 +116,26 @@
                     padding: 10px 15px;
                     font-size: 25px;
                     cursor: pointer;
+                    border: 0;
+                    color: var(--dark-blue);
 
                     &:hover {
                         background-color: var(--dark-beige);
                     }
 
+                    &:disabled:hover {
+                        background-color: var(--beige);
+                    }
+
                     span.idx {
                         margin-right: 7px;
                     }
+                }
+                button.correct {
+                    background-color: var(--green) !important;
+                }
+                button.incorrect {
+                    background-color: var(--red) !important;
                 }
             }
             .count-wrap {
