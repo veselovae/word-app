@@ -2,17 +2,47 @@
     <div class="container">
         <div class="container-content">
             <div class="term-wrap">
-                <p>term</p>
+                <p>{{ getPairOfWords[0] }}</p>
             </div>
             <div class="answers-wrap">
-                <span class="answer first-answer">1. Answer1</span>
-                <span class="answer second-answer">2. Answer2</span>
-                <span class="answer third-answer">3. Answer3</span>
-                <span class="answer fourth-answer">4. Answer4</span>
+                <span
+                    class="answer-wrap"
+                    v-for="(word, idx) in getCorrectAndRandomAnswers"
+                    :key="idx"
+                    @click="checkWord(word[1])"
+                >
+                    <span class="idx">{{ idx + 1 }}.</span>
+                    <span class="answer">{{ word[0] }}</span>
+                </span>
+            </div>
+
+            <div class="count-wrap">
+                <p>{{ getCount }}</p>
             </div>
         </div>
     </div>
 </template>
+
+<script>
+    import { mapGetters, mapMutations } from "vuex";
+
+    export default {
+        computed: mapGetters([
+            "getPairOfWords",
+            "getCount",
+            "getCorrectAndRandomAnswers",
+        ]),
+        methods: {
+            ...mapMutations(["resetIndex", "increaseIndex"]),
+            checkWord(word) {
+                console.log(word);
+            },
+        },
+        mounted() {
+            this.resetIndex();
+        },
+    };
+</script>
 
 <style lang="scss" scoped>
     @import url("../assets/colors.css");
@@ -22,6 +52,7 @@
 
         .container-content {
             max-width: 750px;
+            color: var(--dark-blue);
 
             .term-wrap {
                 width: 100%;
@@ -40,7 +71,7 @@
                 align-items: start;
                 gap: calc(var(--size-elem-nav) / 2 + 17px) 70px;
 
-                span {
+                span.answer-wrap {
                     background-color: var(--beige);
                     transition: background-color 0.2s;
                     width: 340px;
@@ -50,10 +81,24 @@
                     align-items: center;
                     padding: 10px 15px;
                     font-size: 25px;
+                    cursor: pointer;
 
                     &:hover {
                         background-color: var(--dark-beige);
                     }
+
+                    span.idx {
+                        margin-right: 7px;
+                    }
+                }
+            }
+            .count-wrap {
+                margin-top: 30px;
+                width: 100%;
+                text-align: center;
+
+                p {
+                    font-size: 30px;
                 }
             }
         }

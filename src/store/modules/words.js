@@ -1,3 +1,4 @@
+import _ from "../../../node_modules/lodash";
 export default {
     actions: {},
     mutations: {
@@ -40,6 +41,19 @@ export default {
         },
         getCount(state) {
             return `${state.index + 1} / ${state.words.length}`;
+        },
+        getCorrectAndRandomAnswers(state, getters) {
+            let translations = state.words.map((el) => el[1]);
+            let random = [[getters.getPairOfWords[1], "true"]];
+            while (random.length < 4) {
+                const randomWord =
+                    translations[_.random(0, translations.length, false)];
+                const randomWords = random.map((el) => el[0]);
+                if (!randomWords.includes(randomWord) && randomWord) {
+                    random.push([randomWord, "false"]);
+                }
+            }
+            return _.shuffle(random);
         },
     },
 };
