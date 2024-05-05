@@ -67,7 +67,16 @@
                         this.showPopup = true;
                         this.dis = true;
                     }
+                } else {
+                    this.emptyInps();
                 }
+            },
+            emptyInps() {
+                let inps = document.querySelectorAll("input.otp-input");
+                inps.forEach((inp) => inp.classList.add("empty"));
+                setTimeout(() => {
+                    inps.forEach((inp) => inp.classList.remove("empty"));
+                }, 1500);
             },
             closePopup() {
                 this.showPopup = false;
