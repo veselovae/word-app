@@ -19,7 +19,15 @@ export default {
         increaseIndex(state) {
             if (state.index < state.words.length - 1) {
                 state.index++;
+            } else if (state.index === state.words.length - 1) {
+                state.complete = true;
             }
+        },
+        resetScore(state) {
+            state.score = 0;
+        },
+        increaseScore(state) {
+            state.score++;
         },
     },
     state: {
@@ -31,6 +39,8 @@ export default {
             ["mouse", "мышь"],
         ],
         index: 2,
+        score: 0,
+        complete: false,
     },
     getters: {
         getWords(state) {
@@ -54,6 +64,9 @@ export default {
                 }
             }
             return _.shuffle(random);
+        },
+        getScore(state) {
+            return state.score;
         },
     },
 };

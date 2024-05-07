@@ -55,7 +55,12 @@
         components: { DymanicPopup },
         computed: mapGetters(["getPairOfWords", "getCount"]),
         methods: {
-            ...mapMutations(["resetIndex", "increaseIndex"]),
+            ...mapMutations([
+                "resetIndex",
+                "increaseIndex",
+                "resetScore",
+                "increaseScore",
+            ]),
             checkWord() {
                 if (this.word) {
                     if (
@@ -63,6 +68,7 @@
                         this.getPairOfWords[0].toLowerCase()
                     ) {
                         this.getNextWord();
+                        this.increaseScore();
                     } else {
                         this.showPopup = true;
                         this.dis = true;
@@ -91,6 +97,7 @@
         },
         mounted() {
             this.resetIndex();
+            this.resetScore();
         },
     };
 </script>

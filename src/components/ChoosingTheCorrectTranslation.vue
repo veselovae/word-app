@@ -34,13 +34,19 @@
             "getCorrectAndRandomAnswers",
         ]),
         methods: {
-            ...mapMutations(["resetIndex", "increaseIndex"]),
+            ...mapMutations([
+                "resetIndex",
+                "increaseIndex",
+                "resetScore",
+                "increaseScore",
+            ]),
             checkWord(el) {
                 console.log(el);
                 const selectedBtn = el;
                 const isCorrect = el.dataset.correct === "true";
                 if (isCorrect) {
                     selectedBtn.classList.add("correct");
+                    this.increaseScore();
                 } else {
                     selectedBtn.classList.add("incorrect");
                 }
@@ -74,6 +80,7 @@
         },
         mounted() {
             this.resetIndex();
+            this.resetScore();
         },
     };
 </script>

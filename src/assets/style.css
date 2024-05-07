@@ -71,20 +71,3 @@ span.letter {
     -webkit-appearance: none;
     margin: 0;
 }
-
-.empty {
-    animation-name: empty-inputs;
-    animation-duration: 1.5s;
-}
-
-@keyframes empty-inputs {
-    0% {
-        border-bottom: 4px solid var(--dark-blue);
-    }
-    50% {
-        border-bottom: 4px solid red;
-    }
-    100% {
-        border-bottom: 4px solid var(--dark-blue);
-    }
-}
