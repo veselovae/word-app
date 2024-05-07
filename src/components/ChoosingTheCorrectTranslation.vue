@@ -1,6 +1,7 @@
 <template>
     <div class="container">
-        <div class="container-content">
+        <ResultSection v-if="getStatus" />
+        <div class="container-content" v-else>
             <div class="term-wrap">
                 <p>{{ getPairOfWords[0] }}</p>
             </div>
@@ -25,13 +26,16 @@
 </template>
 
 <script>
+    import ResultSection from "./ResultSection.vue";
     import { mapGetters, mapMutations } from "vuex";
 
     export default {
+        components: { ResultSection },
         computed: mapGetters([
             "getPairOfWords",
             "getCount",
             "getCorrectAndRandomAnswers",
+            "getStatus",
         ]),
         methods: {
             ...mapMutations([

@@ -29,6 +29,11 @@ export default {
         increaseScore(state) {
             state.score++;
         },
+        resetAll(state) {
+            state.index = 0;
+            state.score = 0;
+            state.complete = false;
+        },
     },
     state: {
         words: [
@@ -49,8 +54,11 @@ export default {
         getPairOfWords(state) {
             return state.words[state.index];
         },
-        getCount(state) {
-            return `${state.index + 1} / ${state.words.length}`;
+        getWordsLength(state) {
+            return state.words.length;
+        },
+        getCount(state, getters) {
+            return `${state.index + 1} / ${getters.getWordsLength}`;
         },
         getCorrectAndRandomAnswers(state, getters) {
             let translations = state.words.map((el) => el[1]);
@@ -67,6 +75,9 @@ export default {
         },
         getScore(state) {
             return state.score;
+        },
+        getStatus(state) {
+            return state.complete;
         },
     },
 };
