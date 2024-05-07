@@ -38,12 +38,7 @@
             "getStatus",
         ]),
         methods: {
-            ...mapMutations([
-                "resetIndex",
-                "increaseIndex",
-                "resetScore",
-                "increaseScore",
-            ]),
+            ...mapMutations(["increaseIndex", "increaseScore", "resetAll"]),
             checkWord(el) {
                 console.log(el);
                 const selectedBtn = el;
@@ -83,8 +78,7 @@
             },
         },
         mounted() {
-            this.resetIndex();
-            this.resetScore();
+            this.resetAll();
         },
     };
 </script>
