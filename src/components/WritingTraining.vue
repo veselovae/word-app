@@ -1,6 +1,7 @@
 <template>
     <div class="container">
-        <div class="card-and-button">
+        <ResultSection v-if="getStatus" />
+        <div class="card-and-button" v-else>
             <div class="card">
                 <p class="definition">{{ this.getPairOfWords[1] }}</p>
                 <!-- <div class="term" ref="term"></div> -->
@@ -47,6 +48,7 @@
     import { mapGetters, mapMutations } from "vuex";
     import DymanicPopup from "./DynamicPopup.vue";
     import HintEnter from "./HintEnter.vue";
+    import ResultSection from "./ResultSection.vue";
     export default {
         data() {
             return {
@@ -55,8 +57,8 @@
                 dis: false,
             };
         },
-        components: { DymanicPopup, HintEnter },
-        computed: mapGetters(["getPairOfWords", "getCount"]),
+        components: { DymanicPopup, HintEnter, ResultSection },
+        computed: mapGetters(["getPairOfWords", "getCount", "getStatus"]),
         methods: {
             ...mapMutations([
                 "resetIndex",
@@ -84,8 +86,10 @@
                 this.dis = false;
             },
             beforePopupUnmount() {
-                let el = document.querySelector(".otp-input");
-                el.focus();
+                if (!this.getStatus) {
+                    let el = document.querySelector(".otp-input");
+                    el.focus();
+                }
             },
             clearInput() {
                 this.$refs.otpInput.clearInput();
