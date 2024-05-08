@@ -35,12 +35,14 @@
             </button>
         </div>
 
-        <AllCards></AllCards>
+        <AllCards />
+        <HintEnter />
     </div>
 </template>
 
 <script>
     import AllCards from "./AllCards.vue";
+    import HintEnter from "./HintEnter.vue";
     import { mapMutations } from "vuex";
     export default {
         data() {
@@ -49,7 +51,7 @@
                 definition: "",
             };
         },
-        components: { AllCards },
+        components: { AllCards, HintEnter },
         methods: {
             ...mapMutations(["addWord"]),
             putNewWord() {
@@ -72,6 +74,7 @@
 <style lang="scss" scoped>
     @import url("../assets/colors.css");
     .cards-box {
+        position: relative;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
