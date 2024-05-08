@@ -79,6 +79,7 @@
         flex-direction: column;
         align-items: flex-start;
         gap: 17px;
+        width: 100%;
 
         .creation-box {
             display: flex;

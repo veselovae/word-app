@@ -30,6 +30,8 @@
 <style lang="scss" scoped>
     .main {
         display: flex;
-        width: calc(100vw - 80px);
+        width: calc(100vw);
+        min-height: 100vh;
+        padding: 40px;
     }
 </style>

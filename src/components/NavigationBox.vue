@@ -116,12 +116,13 @@
     nav {
         display: flex;
         flex-direction: column;
-        gap: 17px;
+        justify-content: space-between;
+        /*gap: 17px;*/
         margin-right: 87px;
 
         button {
-            width: 125px;
-            height: 125px;
+            width: var(--size-elem-nav);
+            height: var(--size-elem-nav);
             background-color: var(--cyan);
             border: 0;
             border-radius: 10px;
@@ -136,11 +137,15 @@
             }
         }
 
+        svg {
+            width: var(--size-nav-icon);
+        }
+
         img {
-            width: 70px;
+            width: var(--size-nav-icon);
 
             &[id="test"] {
-                height: 70px;
+                height: var(--size-nav-icon);
             }
         }
     }

@@ -1,31 +1,33 @@
 <template>
     <div class="container">
         <ResultSection v-if="getStatus" />
-        <div class="card-and-button" v-else>
-            <div class="card">
-                <p class="definition">{{ this.getPairOfWords[1] }}</p>
-                <!-- <div class="term" ref="term"></div> -->
-                <div style="display: flex; flex-direction: row">
-                    <v-otp-input
-                        ref="otpInput"
-                        input-classes="otp-input"
-                        separator=""
-                        inputType="letter-numeric"
-                        :num-inputs="this.getPairOfWords[0].length"
-                        v-model:value="word"
-                        :should-auto-focus="true"
-                        :should-focus-order="true"
-                        @keyup.enter="checkWord()"
-                        :isDisabled="dis"
-                    />
+        <div class="content" v-else>
+            <div class="card-and-button">
+                <div class="card">
+                    <p class="definition">{{ this.getPairOfWords[1] }}</p>
+                    <!-- <div class="term" ref="term"></div> -->
+                    <div style="display: flex; flex-direction: row">
+                        <v-otp-input
+                            ref="otpInput"
+                            input-classes="otp-input"
+                            separator=""
+                            inputType="letter-numeric"
+                            :num-inputs="this.getPairOfWords[0].length"
+                            v-model:value="word"
+                            :should-auto-focus="true"
+                            :should-focus-order="true"
+                            @keyup.enter="checkWord()"
+                            :isDisabled="dis"
+                        />
+                    </div>
                 </div>
+                <button @click="checkWord()">
+                    <img src="../assets/arrow-down-solid.svg" alt="next word" />
+                </button>
             </div>
-            <button @click="checkWord()">
-                <img src="../assets/arrow-down-solid.svg" alt="next word" />
-            </button>
-        </div>
-        <div class="count">
-            <p>{{ getCount }}</p>
+            <div class="count">
+                <p>{{ getCount }}</p>
+            </div>
         </div>
 
         <HintEnter>check word / hide popup</HintEnter>
