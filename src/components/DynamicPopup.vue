@@ -40,7 +40,7 @@
 <style lang="scss" scoped>
     @import url("../assets/colors.css");
     .popup-background {
-        position: absolute;
+        position: fixed;
         left: 0;
         top: 0;
         width: 100%;
