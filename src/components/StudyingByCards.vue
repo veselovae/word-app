@@ -14,6 +14,7 @@
                 </div>
             </div>
         </div>
+
         <div class="buttons-container">
             <div class="buttons">
                 <button class="btn-prev btn" @click="getPrevCard" ref="prev">
@@ -35,12 +36,18 @@
     import { mapGetters, mapMutations } from "vuex";
     import TheHintForStudyingByCards from "./TheHintForStudyingByCards.vue";
     export default {
+        data() {
+            return {
+                flip: false,
+            };
+        },
         components: { TheHintForStudyingByCards },
         methods: {
             ...mapMutations(["resetIndex", "decreaseIndex", "increaseIndex"]),
             rotateCard() {
                 this.$refs.front.classList.toggle("dis");
                 this.$refs.back.classList.toggle("act");
+                this.flip = !this.flip;
             },
             flipOnBtn(e) {
                 if (e.key == " ") {
@@ -49,8 +56,16 @@
                 this.$refs.flip.blur();
             },
             getPrevCard() {
-                this.decreaseIndex();
-                this.$refs.prev.blur();
+                if (this.flip) {
+                    this.rotateCard();
+                    setTimeout(() => {
+                        this.decreaseIndex();
+                        // this.$refs.prev.blur();
+                    }, 200);
+                } else {
+                    this.decreaseIndex();
+                    // this.$refs.prev.blur();
+                }
             },
             getPrevCardOnBtn(e) {
                 if (e.key == "ArrowLeft") {
@@ -58,8 +73,16 @@
                 }
             },
             getNextCard() {
-                this.increaseIndex();
-                this.$refs.next.blur();
+                if (this.flip) {
+                    this.rotateCard();
+                    setTimeout(() => {
+                        this.increaseIndex();
+                        // this.$refs.next.blur();
+                    }, 200);
+                } else {
+                    this.increaseIndex();
+                    // this.$refs.next.blur();
+                }
             },
             getNextCardOnBtn(e) {
                 if (e.key == "ArrowRight") {
@@ -139,6 +162,7 @@
                 transform: rotateX(0) !important;
             }
         }
+
         .buttons-container {
             position: relative;
             margin-top: 17px;
