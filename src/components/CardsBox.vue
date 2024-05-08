@@ -36,7 +36,7 @@
         </div>
 
         <AllCards />
-        <HintEnter />
+        <HintEnter>add word</HintEnter>
     </div>
 </template>
 

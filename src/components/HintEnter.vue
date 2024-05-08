@@ -10,7 +10,7 @@
         <div class="hint-content">
             <div class="key enter-key">
                 <img src="../assets/keys/enter.png" alt="enter-key" />
-                <span>add word</span>
+                <span><slot></slot></span>
             </div>
         </div>
     </div>

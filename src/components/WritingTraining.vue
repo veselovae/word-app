@@ -27,6 +27,8 @@
             <p>{{ getCount }}</p>
         </div>
 
+        <HintEnter>check word / hide popup</HintEnter>
+
         <DymanicPopup
             v-if="showPopup"
             :closePopup="closePopup"
@@ -44,6 +46,7 @@
 <script>
     import { mapGetters, mapMutations } from "vuex";
     import DymanicPopup from "./DynamicPopup.vue";
+    import HintEnter from "./HintEnter.vue";
     export default {
         data() {
             return {
@@ -52,7 +55,7 @@
                 dis: false,
             };
         },
-        components: { DymanicPopup },
+        components: { DymanicPopup, HintEnter },
         computed: mapGetters(["getPairOfWords", "getCount"]),
         methods: {
             ...mapMutations([
@@ -107,6 +110,8 @@
     .container {
         width: 100%;
         padding-top: calc(125px + 17px);
+        position: relative;
+
         .card-and-button {
             /*max-width: 750px;*/
             max-width: 850px;
