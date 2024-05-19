@@ -78,9 +78,21 @@
                 });
                 this.increaseIndex();
             },
+            choosingOnBtn(e) {
+                if (e.key >= 1 && e.key <= 4) {
+                    const answers = document.querySelectorAll(".answer-wrap");
+                    this.checkWord(answers[e.key - 1]);
+                }
+            },
         },
         mounted() {
             this.resetAll();
+            this.$nextTick(() => {
+                window.addEventListener("keyup", this.choosingOnBtn);
+            });
+        },
+        beforeUnmount() {
+            window.removeEventListener("keyup", this.choosingOnBtn);
         },
     };
 </script>
