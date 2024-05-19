@@ -23,16 +23,18 @@
                 <p>{{ getCount }}</p>
             </div>
         </div>
+        <TheHintForCTCT />
     </div>
 </template>
 
 <script>
     import ResultSection from "./ResultSection.vue";
     import ShuffleButton from "./ShuffleButton.vue";
+    import TheHintForCTCT from "./TheHintForCTCT.vue";
     import { mapGetters, mapMutations } from "vuex";
 
     export default {
-        components: { ResultSection, ShuffleButton },
+        components: { ResultSection, ShuffleButton, TheHintForCTCT },
         computed: mapGetters([
             "getPairOfWords",
             "getCount",
@@ -102,6 +104,7 @@
     .container {
         width: 100%;
         padding-top: calc(125px + 17px);
+        position: relative;
 
         .container-content {
             max-width: 750px;
