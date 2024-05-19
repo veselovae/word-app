@@ -46,13 +46,18 @@ export default {
         index: 2,
         score: 0,
         complete: false,
+        shuffle: false,
     },
     getters: {
         getWords(state) {
-            return state.words;
+            if (state.shuffle) {
+                return _.shuffle(state.words);
+            } else {
+                return state.words;
+            }
         },
-        getPairOfWords(state) {
-            return state.words[state.index];
+        getPairOfWords(state, getters) {
+            return getters.getWords[state.index];
         },
         getWordsLength(state) {
             return state.words.length;
