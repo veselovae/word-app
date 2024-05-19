@@ -1,5 +1,5 @@
 <template>
-    <div class="shuffle-btn">
+    <div class="shuffle-btn" title="shuffle words">
         <label for="shuffle" class="shuffle-btn-img"
             ><img src="../assets/shuffle-solid.svg" alt="shuffle" for="shuffle"
         /></label>
