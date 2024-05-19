@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="card" @click="rotateCard">
-            <ShuffleButton />
+            <ShuffleButton class="shuffle-btn" />
             <div class="front-side-card" ref="front">
                 <p>{{ this.getPairOfWords[0] }}</p>
                 <div class="count">
@@ -120,6 +120,11 @@
             position: relative;
             perspective: 1000px;
             height: 409px;
+
+            .shuffle-btn {
+                top: -35px;
+                right: 0;
+            }
 
             .back-side-card,
             .front-side-card {

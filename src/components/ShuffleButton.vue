@@ -19,8 +19,7 @@
     @import url("../assets/colors.css");
     .shuffle-btn {
         position: absolute;
-        top: -35px;
-        right: 0;
+
         width: auto;
         display: flex;
         align-items: center;
