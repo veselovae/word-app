@@ -26,6 +26,7 @@ export default {
         toggleShuffle(state) {
             if (state.index) {
                 state.index = 0;
+                state.score = 0;
                 state.shuffle = !state.shuffle;
             } else {
                 state.shuffle = !state.shuffle;

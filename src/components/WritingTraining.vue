@@ -4,6 +4,7 @@
         <div class="content" v-else>
             <div class="card-and-button">
                 <div class="card">
+                    <ShuffleButton class="shuffle-btn" />
                     <p class="definition">{{ this.getPairOfWords[1] }}</p>
                     <!-- <div class="term" ref="term"></div> -->
                     <div style="display: flex; flex-direction: row">
@@ -51,6 +52,7 @@
     import DymanicPopup from "./DynamicPopup.vue";
     import HintEnter from "./HintEnter.vue";
     import ResultSection from "./ResultSection.vue";
+    import ShuffleButton from "./ShuffleButton.vue";
     export default {
         data() {
             return {
@@ -59,7 +61,7 @@
                 dis: false,
             };
         },
-        components: { DymanicPopup, HintEnter, ResultSection },
+        components: { DymanicPopup, HintEnter, ResultSection, ShuffleButton },
         computed: mapGetters(["getPairOfWords", "getCount", "getStatus"]),
         methods: {
             ...mapMutations([
@@ -138,6 +140,11 @@
                 gap: 70px;
                 justify-content: center;
                 padding-left: 40px;
+
+                .shuffle-btn {
+                    top: -35px;
+                    right: 0;
+                }
 
                 .definition {
                     font-size: 40px;
