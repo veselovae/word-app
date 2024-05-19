@@ -2,6 +2,7 @@
     <div class="container">
         <ResultSection v-if="getStatus" />
         <div class="container-content" v-else>
+            <ShuffleButton class="shuffle-btn" />
             <div class="term-wrap">
                 <p>{{ getPairOfWords[0] }}</p>
             </div>
@@ -27,10 +28,11 @@
 
 <script>
     import ResultSection from "./ResultSection.vue";
+    import ShuffleButton from "./ShuffleButton.vue";
     import { mapGetters, mapMutations } from "vuex";
 
     export default {
-        components: { ResultSection },
+        components: { ResultSection, ShuffleButton },
         computed: mapGetters([
             "getPairOfWords",
             "getCount",
@@ -92,6 +94,12 @@
         .container-content {
             max-width: 750px;
             color: var(--dark-blue);
+            position: relative;
+
+            .shuffle-btn {
+                bottom: 6px;
+                right: 0;
+            }
 
             .term-wrap {
                 width: 100%;
