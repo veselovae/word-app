@@ -67,6 +67,7 @@
                 "increaseIndex",
                 "resetScore",
                 "increaseScore",
+                "resetAll",
             ]),
             checkWord() {
                 if (this.word) {
@@ -105,8 +106,7 @@
             },
         },
         mounted() {
-            this.resetIndex();
-            this.resetScore();
+            this.resetAll();
         },
     };
 </script>
