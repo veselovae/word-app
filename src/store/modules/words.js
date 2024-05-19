@@ -23,6 +23,14 @@ export default {
                 state.complete = true;
             }
         },
+        toggleShuffle(state) {
+            if (state.index) {
+                state.index = 0;
+                state.shuffle = !state.shuffle;
+            } else {
+                state.shuffle = !state.shuffle;
+            }
+        },
         resetScore(state) {
             state.score = 0;
         },

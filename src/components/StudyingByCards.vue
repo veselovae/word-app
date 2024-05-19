@@ -1,6 +1,7 @@
 <template>
     <div class="container">
         <div class="card" @click="rotateCard">
+            <ShuffleButton />
             <div class="front-side-card" ref="front">
                 <p>{{ this.getPairOfWords[0] }}</p>
                 <div class="count">
@@ -35,13 +36,14 @@
 <script>
     import { mapGetters, mapMutations } from "vuex";
     import TheHintForStudyingByCards from "./TheHintForStudyingByCards.vue";
+    import ShuffleButton from "./ShuffleButton.vue";
     export default {
         data() {
             return {
                 flip: false,
             };
         },
-        components: { TheHintForStudyingByCards },
+        components: { TheHintForStudyingByCards, ShuffleButton },
         methods: {
             ...mapMutations(["resetIndex", "decreaseIndex", "increaseIndex"]),
             rotateCard() {
