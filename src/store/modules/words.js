@@ -77,12 +77,23 @@ export default {
         getCorrectAndRandomAnswers(state, getters) {
             let translations = state.words.map((el) => el[1]);
             let random = [[getters.getPairOfWords[1], "true"]];
-            while (random.length < 4) {
-                const randomWord =
-                    translations[_.random(0, translations.length, false)];
-                const randomWords = random.map((el) => el[0]);
-                if (!randomWords.includes(randomWord) && randomWord) {
-                    random.push([randomWord, "false"]);
+            if (state.words.length < 4) {
+                translations.forEach((el) => {
+                    if (!getters.getPairOfWords[1].includes(el)) {
+                        random.push([el, "false"]);
+                    }
+                });
+                while (random.length < 4) {
+                    random.push([null, "false"]);
+                }
+            } else {
+                while (random.length < 4) {
+                    const randomWord =
+                        translations[_.random(0, translations.length, false)];
+                    const randomWords = random.map((el) => el[0]);
+                    if (!randomWords.includes(randomWord) && randomWord) {
+                        random.push([randomWord, "false"]);
+                    }
                 }
             }
             return _.shuffle(random);
