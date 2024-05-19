@@ -52,7 +52,7 @@ export default {
             ["girl", "девочка"],
             ["mouse", "мышь"],
         ],
-        index: 2,
+        index: 0,
         score: 0,
         complete: false,
         shuffle: false,
