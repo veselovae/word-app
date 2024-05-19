@@ -93,5 +93,18 @@ export default {
         getStatus(state) {
             return state.complete;
         },
+        getFeedback(state) {
+            const amount = state.words.length;
+            const score = state.score;
+            const part = amount / 3;
+
+            if (score <= part) {
+                return "bad";
+            } else if (score <= part * 2) {
+                return "normal";
+            } else if (score <= amount) {
+                return "good";
+            }
+        },
     },
 };

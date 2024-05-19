@@ -7,6 +7,7 @@
                 {{ getWordsLength }}
             </div>
         </div>
+        <img :src="getSRC" />
         <button class="btn-reset-index" @click="resetAll()">Start Again</button>
     </div>
 </template>
@@ -15,7 +16,10 @@
     import { mapGetters, mapMutations } from "vuex";
     export default {
         computed: {
-            ...mapGetters(["getScore", "getWordsLength"]),
+            ...mapGetters(["getScore", "getWordsLength", "getFeedback"]),
+            getSRC() {
+                return require(`../assets/feedback/${this.getFeedback}.png`);
+            },
         },
         methods: {
             ...mapMutations(["resetAll"]),
@@ -26,7 +30,8 @@
 <style lang="scss">
     @import url("../assets/colors.css");
     .result-container {
-        height: var(--size-elem-nav);
+        /*height: var(--size-elem-nav);*/
+        width: max-content;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -40,6 +45,13 @@
             margin-bottom: 20px;
             color: var(--dark-blue);
         }
+
+        img {
+            width: 300px;
+            position: relative;
+            left: -27px;
+        }
+
         .btn-reset-index {
             font-size: 20px;
             padding: 5px 10px;
