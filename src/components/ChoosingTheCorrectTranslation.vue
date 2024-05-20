@@ -44,7 +44,6 @@
         methods: {
             ...mapMutations(["increaseIndex", "increaseScore", "resetAll"]),
             checkWord(el) {
-                console.log(el);
                 const selectedBtn = el;
                 const isCorrect = el.dataset.correct === "true";
                 if (isCorrect) {
