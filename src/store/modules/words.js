@@ -42,6 +42,7 @@ export default {
             state.index = 0;
             state.score = 0;
             state.complete = false;
+            state.shuffle = false;
         },
     },
     state: {
