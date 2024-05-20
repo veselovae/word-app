@@ -30,7 +30,6 @@
             </div>
         </div>
         <TheHintForStudyingByCards />
-        <WarningPopup />
     </div>
 </template>
 
@@ -38,7 +37,6 @@
     import { mapGetters, mapMutations } from "vuex";
     import TheHintForStudyingByCards from "./TheHintForStudyingByCards.vue";
     import ShuffleButton from "./ShuffleButton.vue";
-    import WarningPopup from "./WarningPopup.vue";
 
     export default {
         data() {
@@ -46,7 +44,7 @@
                 flip: false,
             };
         },
-        components: { TheHintForStudyingByCards, ShuffleButton, WarningPopup },
+        components: { TheHintForStudyingByCards, ShuffleButton },
         methods: {
             ...mapMutations(["resetIndex", "decreaseIndex", "increaseIndex"]),
             rotateCard() {
@@ -95,7 +93,7 @@
                 }
             },
         },
-        computed: mapGetters(["getPairOfWords", "getCount"]),
+        computed: mapGetters(["getPairOfWords", "getCount", "getWarning"]),
         mounted() {
             this.$nextTick(() => {
                 this.resetIndex();

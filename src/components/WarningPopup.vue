@@ -7,8 +7,16 @@
                     Progress that you made may not be saved.
                 </p>
                 <div class="warning-buttons">
-                    <button class="warning-btn warning-leave-btn">Leave</button>
-                    <button class="warning-btn warning-cancel-btn">
+                    <button
+                        class="warning-btn warning-leave-btn"
+                        @click="leaveCurrentComponent()"
+                    >
+                        Leave
+                    </button>
+                    <button
+                        class="warning-btn warning-cancel-btn"
+                        @click="stayOnCurrentComponent()"
+                    >
                         Cancel
                     </button>
                 </div>
@@ -16,6 +24,30 @@
         </div>
     </div>
 </template>
+
+<script>
+    import { mapMutations } from "vuex";
+    export default {
+        props: [
+            "replaceActiveComponent",
+            "deleteSelectComponent",
+            "selectComponent",
+            "target",
+        ],
+        methods: {
+            ...mapMutations(["deleteWarning", "resetIndex"]),
+            leaveCurrentComponent() {
+                this.deleteWarning();
+                // this.resetIndex();
+                this.replaceActiveComponent(this.target, this.selectComponent);
+            },
+            stayOnCurrentComponent() {
+                this.deleteSelectComponent();
+                this.deleteWarning();
+            },
+        },
+    };
+</script>
 
 <style lang="scss">
     @import url("../assets/colors.css");
@@ -26,6 +58,7 @@
         width: 100%;
         height: 100%;
         background-color: #ffffffbc;
+        z-index: 1000;
 
         .warning-container {
             position: absolute;

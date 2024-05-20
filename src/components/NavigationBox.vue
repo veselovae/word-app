@@ -91,21 +91,67 @@
         <button class="nav-btn btn-game">
             <img src="../assets/menu/gamepad-solid.svg" alt="write" />
         </button>
+        <WarningPopup
+            v-if="getWarning"
+            :replaceActiveComponent="replaceActiveComponent"
+            :deleteSelectComponent="deleteSelectComponent"
+            :selectComponent="selectComponent"
+            :target="target"
+        />
     </nav>
 </template>
 
 <script>
-    import { mapMutations } from "vuex";
+    import { mapGetters, mapMutations } from "vuex";
+    import WarningPopup from "./WarningPopup.vue";
     export default {
+        data() {
+            return {
+                selectComponent: "",
+                target: "",
+            };
+        },
+        components: { WarningPopup },
+        computed: mapGetters(["getIndex", "getWarning", "getActiveComponent"]),
         methods: {
-            ...mapMutations(["changeActiveComponent"]),
+            ...mapMutations(["changeActiveComponent", "makeWarning"]),
             setActiveComponent(target, comp) {
+                if (this.getActiveComponent != comp) {
+                    this.selectComponent = comp;
+                    this.target = target;
+                    this.checkProgress();
+
+                    // if (!this.getWarning) {
+                    //     this.changeActiveComponent(comp);
+                    //     let btns = document.querySelectorAll(".nav-btn");
+                    //     btns.forEach((btn) => {
+                    //         btn.classList.remove("active");
+                    //     });
+                    //     target.classList.add("active");
+                    // }
+                    if (!this.getWarning) {
+                        this.replaceActiveComponent(target, comp);
+                    }
+                }
+            },
+            replaceActiveComponent(target, comp) {
                 this.changeActiveComponent(comp);
                 let btns = document.querySelectorAll(".nav-btn");
                 btns.forEach((btn) => {
                     btn.classList.remove("active");
                 });
                 target.classList.add("active");
+            },
+
+            deleteSelectComponent() {
+                this.selectComponent = null;
+                this.target = null;
+            },
+
+            checkProgress() {
+                if (this.getIndex) {
+                    this.makeWarning();
+                }
             },
         },
     };

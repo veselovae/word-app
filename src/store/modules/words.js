@@ -44,6 +44,12 @@ export default {
             state.complete = false;
             state.shuffle = false;
         },
+        makeWarning(state) {
+            state.warning = true;
+        },
+        deleteWarning(state) {
+            state.warning = false;
+        },
     },
     state: {
         words: [
@@ -57,6 +63,7 @@ export default {
         score: 0,
         complete: false,
         shuffle: false,
+        warning: false,
     },
     getters: {
         getWords(state) {
@@ -74,6 +81,12 @@ export default {
         },
         getCount(state, getters) {
             return `${state.index + 1} / ${getters.getWordsLength}`;
+        },
+        getIndex(state) {
+            return state.index;
+        },
+        getWarning(state) {
+            return state.warning;
         },
         getCorrectAndRandomAnswers(state, getters) {
             let translations = state.words.map((el) => el[1]);
