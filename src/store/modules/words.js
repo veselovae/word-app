@@ -4,9 +4,11 @@ export default {
     mutations: {
         addWord(state, arrPair) {
             state.words.unshift(arrPair);
+            localStorage.setItem("words", JSON.stringify(state.words));
         },
         deleteWord(state, idx) {
             state.words.splice(idx, 1);
+            localStorage.setItem("words", JSON.stringify(state.words));
         },
         resetIndex(state) {
             state.index = 0;
@@ -46,13 +48,9 @@ export default {
         },
     },
     state: {
-        words: [
-            ["computer", "компьютер"],
-            ["home", "дом"],
-            ["tree", "дерево"],
-            ["girl", "девочка"],
-            ["mouse", "мышь"],
-        ],
+        words: localStorage.getItem("words")
+            ? JSON.parse(localStorage.getItem("words"))
+            : [],
         index: 0,
         score: 0,
         complete: false,
