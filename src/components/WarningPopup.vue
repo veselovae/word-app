@@ -33,6 +33,7 @@
             "deleteSelectComponent",
             "selectComponent",
             "target",
+            "deleteWarning",
         ],
         methods: {
             ...mapMutations(["deleteWarning", "resetIndex"]),

@@ -88,13 +88,14 @@
                 alt="write"
             />
         </button>
-        <button class="nav-btn btn-game">
+        <!-- <button class="nav-btn btn-game">
             <img src="../assets/menu/gamepad-solid.svg" alt="write" />
-        </button>
+        </button> -->
         <WarningPopup
-            v-if="getWarning"
+            v-if="warning"
             :replaceActiveComponent="replaceActiveComponent"
             :deleteSelectComponent="deleteSelectComponent"
+            :deleteWarning="deleteWarning"
             :selectComponent="selectComponent"
             :target="target"
         />
@@ -109,27 +110,23 @@
             return {
                 selectComponent: "",
                 target: "",
+                warning: false,
             };
         },
         components: { WarningPopup },
         computed: mapGetters(["getIndex", "getWarning", "getActiveComponent"]),
         methods: {
             ...mapMutations(["changeActiveComponent", "makeWarning"]),
+            deleteWarning() {
+                this.warning = false;
+            },
             setActiveComponent(target, comp) {
                 if (this.getActiveComponent != comp) {
                     this.selectComponent = comp;
                     this.target = target;
                     this.checkProgress();
 
-                    // if (!this.getWarning) {
-                    //     this.changeActiveComponent(comp);
-                    //     let btns = document.querySelectorAll(".nav-btn");
-                    //     btns.forEach((btn) => {
-                    //         btn.classList.remove("active");
-                    //     });
-                    //     target.classList.add("active");
-                    // }
-                    if (!this.getWarning) {
+                    if (!this.warning) {
                         this.replaceActiveComponent(target, comp);
                     }
                 }
@@ -150,7 +147,7 @@
 
             checkProgress() {
                 if (this.getIndex) {
-                    this.makeWarning();
+                    this.warning = true;
                 }
             },
         },
