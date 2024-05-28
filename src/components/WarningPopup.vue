@@ -36,7 +36,7 @@
             "deleteWarning",
         ],
         methods: {
-            ...mapMutations(["deleteWarning", "resetIndex"]),
+            ...mapMutations(["resetIndex"]),
             leaveCurrentComponent() {
                 this.deleteWarning();
                 // this.resetIndex();
