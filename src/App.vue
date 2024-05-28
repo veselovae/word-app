@@ -1,7 +1,7 @@
 <template>
     <div class="main">
         <NavigationBox></NavigationBox>
-        <component :is="getActiveComponent"></component>
+        <component :is="getActiveComponent" class="component"></component>
     </div>
 </template>
 
@@ -31,7 +31,12 @@
     .main {
         display: flex;
         width: calc(100vw);
-        min-height: 100vh;
+        /*min-height: 100vh;*/
         padding: 40px;
+
+        .component {
+            margin-left: 160px;
+            min-height: calc(100vh - (40px * 2));
+        }
     }
 </style>

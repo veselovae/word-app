@@ -21,8 +21,8 @@
         height: 35px;
         width: 35px;
         position: absolute;
-        bottom: 0;
-        right: 0;
+        bottom: -10px !important;
+        right: -23px !important;
 
         svg path {
             transition: fill 0.2s;

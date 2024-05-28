@@ -162,6 +162,8 @@
         justify-content: space-between;
         /*gap: 17px;*/
         margin-right: 87px;
+        min-height: calc(100vh - (40px * 2));
+        position: fixed;
 
         button {
             width: var(--size-elem-nav);
