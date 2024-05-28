@@ -59,7 +59,7 @@
         width: 100%;
         height: 100%;
         background-color: #ffffffbc;
-        z-index: 1000;
+        z-index: 10000;
 
         .warning-container {
             position: absolute;

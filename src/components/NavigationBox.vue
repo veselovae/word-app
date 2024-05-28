@@ -164,6 +164,7 @@
         margin-right: 87px;
         min-height: calc(100vh - (40px * 2));
         position: fixed;
+        z-index: 10000;
 
         button {
             width: var(--size-elem-nav);
