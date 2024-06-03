@@ -81,7 +81,10 @@
         >
             <img src="../assets/menu/pen-solid.svg" alt="write" />
         </button>
-        <button class="nav-btn btn-test">
+        <button
+            class="nav-btn btn-test"
+            @click="setActiveComponent($event.currentTarget, 'TheTest')"
+        >
             <img
                 id="test"
                 src="../assets/menu/file-lines-regular.svg"

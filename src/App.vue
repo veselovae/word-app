@@ -11,6 +11,7 @@
     import StudyingByCards from "./components/StudyingByCards.vue";
     import WritingTraining from "./components/WritingTraining.vue";
     import ChoosingTheCorrectTranslation from "./components/ChoosingTheCorrectTranslation.vue";
+    import TheTest from "./components/TheTest.vue";
 
     import { mapGetters } from "vuex";
 
@@ -22,6 +23,7 @@
             StudyingByCards,
             WritingTraining,
             ChoosingTheCorrectTranslation,
+            TheTest,
         },
         computed: mapGetters(["getActiveComponent"]),
     };
