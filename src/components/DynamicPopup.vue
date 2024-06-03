@@ -60,12 +60,22 @@
             h4 {
                 font-size: 30px;
                 margin-bottom: 20px;
+                min-width: 188px;
+
+                @media screen and (orientation: portrait) and (max-width: 600px) {
+                    font-size: 23px;
+                    margin-bottom: 15px;
+                }
             }
 
             .answer {
                 display: flex;
                 gap: 10px;
                 font-size: 20px;
+
+                @media screen and (orientation: portrait) and (max-width: 600px) {
+                    font-size: 18px;
+                }
 
                 p {
                     font-weight: bold;

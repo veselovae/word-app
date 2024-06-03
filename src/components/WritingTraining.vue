@@ -31,7 +31,7 @@
             </div>
         </div>
 
-        <HintEnter>check word / hide popup</HintEnter>
+        <HintEnter class="hint-wt">check word / hide popup</HintEnter>
 
         <DymanicPopup
             v-if="showPopup"
@@ -126,6 +126,11 @@
             display: flex;
             align-items: center;
             gap: 20px;
+
+            @media screen and (max-width: 600px) {
+                gap: 10px;
+            }
+
             .card {
                 width: 100%;
                 /*max-width: 750px;*/
@@ -141,6 +146,14 @@
                 justify-content: center;
                 padding-left: 40px;
 
+                @media screen and (max-width: 600px) {
+                    height: 350px;
+                }
+
+                @media screen and (max-width: 450px) {
+                    height: 300px;
+                }
+
                 .shuffle-btn {
                     top: -35px;
                     right: 0;
@@ -148,6 +161,10 @@
 
                 .definition {
                     font-size: 40px;
+
+                    @media screen and (max-width: 600px) {
+                        font-size: 30px;
+                    }
                 }
 
                 .term {
@@ -172,6 +189,11 @@
                     height: 50px;
                     width: 50px;
                     rotate: -90deg;
+
+                    @media screen and (orientation: portrait) and (max-width: 600px) {
+                        height: 30px;
+                        width: 30px;
+                    }
                 }
             }
         }
@@ -185,6 +207,11 @@
                 font-size: 30px;
                 color: var(--dark-blue);
             }
+        }
+
+        .hint-wt {
+            bottom: -10px !important;
+            right: -25px !important;
         }
     }
 </style>

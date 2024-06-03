@@ -122,6 +122,14 @@
             perspective: 1000px;
             height: 409px;
 
+            @media screen and (max-width: 600px) {
+                height: 350px;
+            }
+
+            @media screen and (max-width: 450px) {
+                height: 300px;
+            }
+
             .shuffle-btn {
                 top: -35px;
                 right: 0;
@@ -139,9 +147,24 @@
                 transition: 0.7s;
                 backface-visibility: hidden;
 
+                @media screen and (max-width: 600px) {
+                    height: 350px;
+                }
+
+                @media screen and (max-width: 450px) {
+                    height: 300px;
+                }
+
                 p {
                     font-size: 50px;
                     color: var(--dark-blue);
+
+                    @media screen and (max-width: 600px) {
+                        font-size: 40px;
+                    }
+                    @media screen and (max-width: 450px) {
+                        font-size: 30px;
+                    }
                 }
 
                 .count {

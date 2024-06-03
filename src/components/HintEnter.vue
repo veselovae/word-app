@@ -1,5 +1,5 @@
 <template>
-    <div class="hint-container">
+    <div class="hint-container-enter">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
             <path
                 fill="#148d8d"
@@ -17,12 +17,12 @@
 </template>
 
 <style lang="scss">
-    .hint-container {
+    .hint-container-enter {
         height: 35px;
         width: 35px;
         position: absolute;
-        bottom: -10px !important;
-        right: -23px !important;
+        bottom: 30px;
+        right: 15px;
 
         svg path {
             transition: fill 0.2s;

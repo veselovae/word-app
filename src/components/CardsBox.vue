@@ -36,7 +36,7 @@
         </div>
 
         <AllCards />
-        <HintEnter>add word</HintEnter>
+        <HintEnter class="hint">add word</HintEnter>
     </div>
 </template>
 
@@ -79,7 +79,13 @@
         flex-direction: column;
         align-items: flex-start;
         gap: 17px;
-        width: 100%;
+        position: fixed;
+
+        .hint {
+            position: fixed;
+            /*bottom: 30px;
+            right: 20px;*/
+        }
 
         .creation-box {
             display: flex;

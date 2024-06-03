@@ -116,7 +116,11 @@
         components: { WarningPopup },
         computed: mapGetters(["getIndex", "getWarning", "getActiveComponent"]),
         methods: {
-            ...mapMutations(["changeActiveComponent", "makeWarning"]),
+            ...mapMutations([
+                "changeActiveComponent",
+                "makeWarning",
+                "resetIndex",
+            ]),
             deleteWarning() {
                 this.warning = false;
             },
@@ -138,6 +142,8 @@
                     btn.classList.remove("active");
                 });
                 target.classList.add("active");
+
+                this.resetIndex();
             },
 
             deleteSelectComponent() {
@@ -165,6 +171,14 @@
         min-height: calc(100vh - (40px * 2));
         position: fixed;
         z-index: 10000;
+        @media screen and (orientation: portrait) {
+            display: flex;
+            flex-direction: row;
+            min-height: var(--size-elem-nav);
+            width: calc(100vw - (40px * 2));
+            justify-content: space-between;
+            margin-right: 0px;
+        }
 
         button {
             width: var(--size-elem-nav);
@@ -173,6 +187,16 @@
             border: 0;
             border-radius: 10px;
             cursor: pointer;
+
+            @media screen and (orientation: portrait) and (max-width: 600px) {
+                width: calc(var(--size-elem-nav) - 30px);
+                height: calc(var(--size-elem-nav) - 30px);
+            }
+
+            @media screen and (orientation: portrait) and (max-width: 450px) {
+                width: calc(var(--size-elem-nav) - 40px);
+                height: calc(var(--size-elem-nav) - 40px);
+            }
 
             &:focus-visible {
                 outline: 2px solid var(--dark-blue);
@@ -185,13 +209,25 @@
 
         svg {
             width: var(--size-nav-icon);
+
+            @media screen and (orientation: portrait) and (max-width: 600px) {
+                width: calc(var(--size-nav-icon) - 20px);
+            }
         }
 
         img {
             width: var(--size-nav-icon);
 
+            @media screen and (orientation: portrait) and (max-width: 600px) {
+                width: calc(var(--size-nav-icon) - 20px);
+            }
+
             &[id="test"] {
                 height: var(--size-nav-icon);
+
+                @media screen and (orientation: portrait) and (max-width: 600px) {
+                    height: calc(var(--size-nav-icon) - 20px);
+                }
             }
         }
     }

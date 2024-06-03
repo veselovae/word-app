@@ -9,7 +9,7 @@
 }
 
 body {
-    width: 100%;
+    /*width: 100%;*/
     /*min-height: 100vh;*/
     display: flex;
     align-items: center;
@@ -36,6 +36,33 @@ body {
     border-bottom: 4px solid var(--cyan);
     caret-color: transparent;
 }
+
+@media screen and (max-width: 600px) {
+    .otp-input {
+        width: 30px;
+        height: 30px;
+        margin: 0 3px;
+        font-size: 20px;
+        border-bottom: 3px solid var(--dark-blue);
+    }
+    .otp-input:focus {
+        border-bottom: 3px solid var(--cyan);
+    }
+}
+
+@media screen and (orientation: portrait) and (max-width: 450px) {
+    .otp-input {
+        width: 20px;
+        height: 20px;
+        padding: 0px;
+        font-size: 13px;
+        border-bottom: 2px solid var(--dark-blue);
+    }
+    .otp-input:focus {
+        border-bottom: 2px solid var(--cyan);
+    }
+}
+
 /* Background colour of an input field with value */
 /* .otp-input.is-complete {
     background-color: #e4e4e4;

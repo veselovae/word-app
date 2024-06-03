@@ -105,6 +105,10 @@
         padding-top: calc(125px + 17px);
         position: relative;
 
+        @media screen and (orientation: portrait) {
+            padding-top: 0;
+        }
+
         .container-content {
             max-width: 750px;
             color: var(--dark-blue);
@@ -118,11 +122,10 @@
             .term-wrap {
                 width: 100%;
                 font-size: 60px;
-                height: var(--size-elem-nav);
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                margin-bottom: 17px;
+                margin-bottom: 30px;
             }
 
             .answers-wrap {
@@ -130,7 +133,19 @@
                 display: flex;
                 flex-wrap: wrap;
                 align-items: start;
-                gap: calc(var(--size-elem-nav) / 2 + 17px) 70px;
+                gap: 60px 70px;
+
+                @media screen and (orientation: portrait) {
+                    justify-content: center;
+                }
+
+                @media screen and (max-width: 1000px) {
+                    gap: 40px;
+                }
+
+                @media screen and (orientation: portrait) and (max-width: 600px) {
+                    gap: 20px;
+                }
 
                 button.answer-wrap {
                     background-color: var(--beige);
@@ -145,6 +160,11 @@
                     cursor: pointer;
                     border: 0;
                     color: var(--dark-blue);
+
+                    @media screen and (max-width: 1000px) {
+                        width: 270px;
+                        font-size: 20px;
+                    }
 
                     &:hover {
                         background-color: var(--dark-beige);
