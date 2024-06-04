@@ -1,7 +1,7 @@
 <template>
     <div class="question-card-container">
-        <div class="def"><slot name="def"></slot></div>
         <div class="term"><slot name="term"></slot></div>
+        <div class="def"><slot name="def"></slot></div>
         <div class="btns">
             <button>true</button>
             <button>false</button>
@@ -23,7 +23,7 @@
     .question-card-container {
         gap: 30px;
         .def {
-            font-size: 60px;
+            font-size: 30px;
 
             @media screen and (max-width: 600px) {
                 font-size: 40px;
@@ -31,7 +31,7 @@
         }
 
         .term {
-            font-size: 30px;
+            font-size: 60px !important;
 
             @media screen and (max-width: 600px) {
                 font-size: 20px;

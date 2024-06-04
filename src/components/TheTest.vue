@@ -11,8 +11,8 @@
                 {{ this.getPairOfWords[1] }}
             </TheWriting>
             <YesOrNo v-else-if="current == 'YesOrNo'">
-                <template v-slot:def>{{ this.getPairOfWords[0] }}</template>
-                <template v-slot:term>{{ this.getPairOfWords[1] }}</template>
+                <template v-slot:def>{{ this.getPairOfWords[1] }}</template>
+                <template v-slot:term>{{ this.getPairOfWords[0] }}</template>
             </YesOrNo>
             <TheChoice v-else-if="current == 'TheChoice'">
                 <slot>{{ this.getPairOfWords[0] }}</slot>
@@ -38,7 +38,7 @@
     export default {
         data() {
             return {
-                current: "TheChoice",
+                current: "YesOrNo",
                 comps: ["TheWriting", "YesOrNo", "TheChoice"],
             };
         },
