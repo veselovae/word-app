@@ -57,6 +57,7 @@
             return {
                 current: "",
                 comps: ["TheWriting", "YesOrNo", "TheChoice"],
+                result: [],
             };
         },
         computed: {
@@ -86,12 +87,26 @@
             },
             checkAnswer(answer, comp) {
                 if (comp == "TheChoice") {
-                    if (answer[1]) {
+                    if (answer[1] == "true") {
                         this.increaseScore();
+                        this.result.push(["true", this.getPairOfWords]);
+                    } else {
+                        this.result.push([
+                            "false",
+                            this.getPairOfWords,
+                            answer,
+                        ]);
                     }
                 } else if (comp == "YesOrNo") {
                     if (!!this.getRandomDefForYONComp[1] == answer) {
                         this.increaseScore();
+                        this.result.push(["true", this.getPairOfWords]);
+                    } else {
+                        this.result.push([
+                            "false",
+                            this.getPairOfWords,
+                            this.getRandomDefForYONComp[0],
+                        ]);
                     }
                 } else if (comp == "TheWriting") {
                     if (
@@ -99,6 +114,13 @@
                         answer.toLowerCase()
                     ) {
                         this.increaseScore();
+                        this.result.push(["true", this.getPairOfWords]);
+                    } else {
+                        this.result.push([
+                            "false",
+                            this.getPairOfWords,
+                            answer,
+                        ]);
                     }
                 }
 
