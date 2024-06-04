@@ -76,6 +76,23 @@ export default {
         getIndex(state) {
             return state.index;
         },
+        getPairOfCorrectAndRandomAnwersWithoutSuffle(state, getters) {
+            let translations = state.words.map((el) => el[1]);
+            let random = [[getters.getPairOfWords[1], "true"]];
+            if (state.words.length < 2) {
+                random.push([getters.getPairOfWords[1], "true"]);
+            } else {
+                while (random.length < 2) {
+                    const randomWord =
+                        translations[_.random(0, translations.length, false)];
+                    const randomWords = random.map((el) => el[0]);
+                    if (!randomWords.includes(randomWord) && randomWord) {
+                        random.push([randomWord, "false"]);
+                    }
+                }
+            }
+            return random;
+        },
         getCorrectAndRandomAnswers(state, getters) {
             let translations = state.words.map((el) => el[1]);
             let random = [[getters.getPairOfWords[1], "true"]];
