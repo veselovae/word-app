@@ -52,13 +52,13 @@
                 background-color: var(--beige);
                 transition: all 0.2s;
                 border-radius: 10px;
+                border: 3px solid var(--beige);
                 min-height: calc(var(--size-elem-nav) / 2);
                 display: flex;
                 align-items: center;
                 padding: 10px 15px;
                 font-size: 25px;
                 cursor: pointer;
-                border: 0;
                 color: var(--dark-blue);
 
                 @media screen and (max-width: 1060px) {
