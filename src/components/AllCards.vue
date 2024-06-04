@@ -1,11 +1,11 @@
 <template>
     <div class="all-cards">
-        <div class="card" v-for="(word, idx) of getWords" :key="idx">
+        <div class="card" v-for="word of getWords" :key="word[2]">
             <img
                 src="../assets/xmark-solid.svg"
                 alt="remove"
                 title="delete"
-                @click="deleteWord(idx)"
+                @click="deleteWord(word[2])"
             />
             <p class="term">{{ word[0] }}</p>
             <p class="definition">{{ word[1] }}</p>

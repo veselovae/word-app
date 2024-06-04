@@ -7,7 +7,9 @@ export default {
             localStorage.setItem("words", JSON.stringify(state.words));
         },
         deleteWord(state, idx) {
-            state.words.splice(idx, 1);
+            const deletedEl = state.words.find((el) => el[2] == idx);
+            const idxOfArray = state.words.indexOf(deletedEl);
+            state.words.splice(idxOfArray, 1);
             localStorage.setItem("words", JSON.stringify(state.words));
         },
         resetIndex(state) {
