@@ -85,8 +85,6 @@
                 return this.comps[_.random(0, this.comps.length - 1, false)];
             },
             checkAnswer(answer, comp) {
-                console.log(answer);
-
                 if (comp == "TheChoice") {
                     if (answer[1]) {
                         this.increaseScore();

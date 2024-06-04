@@ -51,6 +51,7 @@
         display: flex;
         align-items: center;
         color: var(--dark-blue);
+        gap: 10px;
 
         .writing-card {
             width: 100%;
