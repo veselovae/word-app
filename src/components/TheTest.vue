@@ -38,20 +38,22 @@
     export default {
         data() {
             return {
-                current: "YesOrNo",
+                current: "",
                 comps: ["TheWriting", "YesOrNo", "TheChoice"],
             };
         },
         computed: mapGetters(["getPairOfWords", "getCount"]),
         components: { TheWriting, YesOrNo, TheChoice },
         methods: {
-            ...mapMutations(["toggleShuffle"]),
+            ...mapMutations(["toggleShuffle", "resetAll"]),
             getRandomQuestionComp() {
                 return this.comps[_.random(0, this.comps.length - 1, false)];
             },
         },
         mounted() {
+            this.resetAll();
             this.toggleShuffle();
+            this.current = this.getRandomQuestionComp();
         },
     };
 </script>
