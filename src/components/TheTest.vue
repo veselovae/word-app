@@ -1,29 +1,40 @@
 <template>
     <div class="container">
-        <button class="btn-start" @click="getRandomQuestionComp()">
-            Start
-        </button>
-        <div class="question-box">
-            <TheWriting
-                v-if="current == 'TheWriting'"
-                :length="this.getPairOfWords[0].length"
-            >
-                {{ this.getPairOfWords[1] }}
-            </TheWriting>
-            <YesOrNo v-else-if="current == 'YesOrNo'">
-                <template v-slot:def>{{ this.getPairOfWords[1] }}</template>
-                <template v-slot:term>{{ this.getPairOfWords[0] }}</template>
-            </YesOrNo>
-            <TheChoice v-else-if="current == 'TheChoice'">
-                <slot>{{ this.getPairOfWords[0] }}</slot>
-            </TheChoice>
-
-            <button @click="checkWord()" class="next-word">
-                <img src="../assets/arrow-down-solid.svg" alt="next word" />
+        <ResultSection v-if="getStatus" />
+        <div class="test-container" v-else>
+            <button class="btn-start" @click="getRandomQuestionComp()">
+                Start
             </button>
-        </div>
-        <div class="count">
-            <p>{{ this.getCount }}</p>
+
+            <div class="question-box">
+                <TheWriting
+                    v-if="current == 'TheWriting'"
+                    :length="this.getPairOfWords[0].length"
+                >
+                    {{ this.getPairOfWords[1] }}
+                </TheWriting>
+                <YesOrNo
+                    v-else-if="current == 'YesOrNo'"
+                    @sendingResponse="checkAnswer"
+                >
+                    <template v-slot:term>{{
+                        this.getPairOfWords[0]
+                    }}</template>
+                    <template v-slot:def>{{
+                        this.getRandomDefForYONComp[0]
+                    }}</template>
+                </YesOrNo>
+                <TheChoice v-else-if="current == 'TheChoice'">
+                    <slot>{{ this.getPairOfWords[0] }}</slot>
+                </TheChoice>
+
+                <button @click="nextCard()" class="next-word">
+                    <img src="../assets/arrow-down-solid.svg" alt="next word" />
+                </button>
+            </div>
+            <div class="count">
+                <p>{{ this.getCount }}</p>
+            </div>
         </div>
     </div>
 </template>
@@ -33,6 +44,8 @@
     import TheWriting from "./comps-for-test/TheWriting.vue";
     import YesOrNo from "./comps-for-test/YesOrNo.vue";
     import TheChoice from "./comps-for-test/TheChoice.vue";
+    import ResultSection from "./ResultSection.vue";
+
     import { mapGetters, mapMutations } from "vuex";
 
     export default {
@@ -42,12 +55,41 @@
                 comps: ["TheWriting", "YesOrNo", "TheChoice"],
             };
         },
-        computed: mapGetters(["getPairOfWords", "getCount"]),
-        components: { TheWriting, YesOrNo, TheChoice },
+        computed: {
+            ...mapGetters([
+                "getPairOfWords",
+                "getCount",
+                "getCorrectAndRandomAnswers",
+                "getPairOfCorrectAndRandomAnwersWithoutSuffle",
+                "getStatus",
+            ]),
+            getRandomDefForYONComp() {
+                return this.getPairOfCorrectAndRandomAnwersWithoutSuffle[
+                    _.random(0, 1, false)
+                ];
+            },
+        },
+        components: { TheWriting, YesOrNo, TheChoice, ResultSection },
         methods: {
-            ...mapMutations(["toggleShuffle", "resetAll"]),
+            ...mapMutations([
+                "toggleShuffle",
+                "resetAll",
+                "increaseIndex",
+                "increaseScore",
+            ]),
             getRandomQuestionComp() {
                 return this.comps[_.random(0, this.comps.length - 1, false)];
+            },
+            checkAnswer(answer) {
+                if (!!this.getRandomDefForYONComp[1] == answer) {
+                    this.increaseScore();
+                }
+
+                this.nextCard();
+            },
+            nextCard() {
+                this.increaseIndex();
+                this.current = this.getRandomQuestionComp();
             },
         },
         mounted() {

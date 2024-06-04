@@ -3,8 +3,8 @@
         <div class="term"><slot name="term"></slot></div>
         <div class="def"><slot name="def"></slot></div>
         <div class="btns">
-            <button>true</button>
-            <button>false</button>
+            <button @click="sendToParent(true)">true</button>
+            <button @click="sendToParent(false)">false</button>
         </div>
     </div>
 </template>
@@ -15,6 +15,11 @@
             return {
                 word: "",
             };
+        },
+        methods: {
+            sendToParent(value) {
+                this.$emit("sendingResponse", value);
+            },
         },
     };
 </script>
