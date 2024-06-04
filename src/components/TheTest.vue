@@ -10,6 +10,7 @@
                 <TheWriting
                     v-if="current == 'TheWriting'"
                     :length="this.getPairOfWords[0].length"
+                    @sendingResponse="checkAnswer"
                 >
                     {{ this.getPairOfWords[1] }}
                 </TheWriting>
@@ -31,9 +32,9 @@
                     <slot>{{ this.getPairOfWords[0] }}</slot>
                 </TheChoice>
 
-                <button @click="nextCard()" class="next-word">
+                <!-- <button @click="nextCard()" class="next-word">
                     <img src="../assets/arrow-down-solid.svg" alt="next word" />
-                </button>
+                </button> -->
             </div>
             <div class="count">
                 <p>{{ this.getCount }}</p>
@@ -88,12 +89,17 @@
 
                 if (comp == "TheChoice") {
                     if (answer[1]) {
-                        console.log("TheChoice");
                         this.increaseScore();
                     }
                 } else if (comp == "YesOrNo") {
                     if (!!this.getRandomDefForYONComp[1] == answer) {
-                        console.log("YesOrNo");
+                        this.increaseScore();
+                    }
+                } else if (comp == "TheWriting") {
+                    if (
+                        this.getPairOfWords[0].toLowerCase() ==
+                        answer.toLowerCase()
+                    ) {
                         this.increaseScore();
                     }
                 }

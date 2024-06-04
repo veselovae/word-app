@@ -30,6 +30,28 @@
 
 <style lang="scss">
     .question-card-container {
+        width: 100%;
+        max-width: 750px;
+        position: relative;
+        perspective: 1000px;
+        height: 409px;
+        background-color: var(--dark-beige);
+        border-radius: 30px;
+        color: var(--dark-blue);
+        display: flex;
+        flex-direction: column;
+        gap: 70px;
+        justify-content: center;
+        padding: 40px;
+
+        @media screen and (max-width: 600px) {
+            height: 350px;
+        }
+
+        @media screen and (max-width: 450px) {
+            height: 300px;
+        }
+
         @media screen and (max-width: 762px) {
             gap: 15px;
         }
