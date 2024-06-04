@@ -56,7 +56,7 @@
             ...mapMutations(["addWord"]),
             putNewWord() {
                 if (!this.term || !this.definition) return false;
-                this.addWord([this.term, this.definition]);
+                this.addWord([this.term.trim(), this.definition.trim()]);
                 this.term = "";
                 this.definition = "";
                 this.$refs.inpTerm.focus();
