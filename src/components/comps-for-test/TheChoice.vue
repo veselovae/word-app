@@ -7,7 +7,7 @@
                 v-for="(word, idx) in getCorrectAndRandomAnswers"
                 :key="idx"
                 :data-correct="word[1]"
-                @click="checkWord($event.currentTarget)"
+                @click="sendToParent(word, 'TheChoice')"
             >
                 <span class="idx">{{ idx + 1 }}.</span>
                 <span class="answer">{{ word[0] }}</span>
@@ -20,6 +20,11 @@
     import { mapGetters } from "vuex";
     export default {
         computed: mapGetters(["getCorrectAndRandomAnswers"]),
+        methods: {
+            sendToParent(value, comp) {
+                this.$emit("sendingResponse", value, comp);
+            },
+        },
     };
 </script>
 

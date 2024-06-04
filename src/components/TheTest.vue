@@ -24,7 +24,10 @@
                         this.getRandomDefForYONComp[0]
                     }}</template>
                 </YesOrNo>
-                <TheChoice v-else-if="current == 'TheChoice'">
+                <TheChoice
+                    v-else-if="current == 'TheChoice'"
+                    @sendingResponse="checkAnswer"
+                >
                     <slot>{{ this.getPairOfWords[0] }}</slot>
                 </TheChoice>
 
@@ -80,9 +83,19 @@
             getRandomQuestionComp() {
                 return this.comps[_.random(0, this.comps.length - 1, false)];
             },
-            checkAnswer(answer) {
-                if (!!this.getRandomDefForYONComp[1] == answer) {
-                    this.increaseScore();
+            checkAnswer(answer, comp) {
+                console.log(answer);
+
+                if (comp == "TheChoice") {
+                    if (answer[1]) {
+                        console.log("TheChoice");
+                        this.increaseScore();
+                    }
+                } else if (comp == "YesOrNo") {
+                    if (!!this.getRandomDefForYONComp[1] == answer) {
+                        console.log("YesOrNo");
+                        this.increaseScore();
+                    }
                 }
 
                 this.nextCard();
