@@ -44,6 +44,8 @@
                 <p>{{ this.getCount }}</p>
             </div>
         </div>
+
+        <TheHintForTest />
     </div>
 </template>
 
@@ -54,6 +56,7 @@
     import TheChoice from "./comps-for-test/TheChoice.vue";
     import ResultSection from "./ResultSection.vue";
     import TheTestResult from "./TheTestResult.vue";
+    import TheHintForTest from "./TheHintForTest.vue";
 
     import { mapGetters, mapMutations } from "vuex";
 
@@ -86,6 +89,7 @@
             TheChoice,
             ResultSection,
             TheTestResult,
+            TheHintForTest,
         },
         methods: {
             ...mapMutations([
@@ -179,7 +183,7 @@
         width: 100%;
         padding-top: calc(125px + 17px);
         position: relative;
-        overflow: hidden;
+        /*overflow: hidden;*/
 
         .result {
             margin-top: -142px;
