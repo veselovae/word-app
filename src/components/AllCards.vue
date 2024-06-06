@@ -26,7 +26,19 @@
     .all-cards {
         /*max-width: 1067px;*/
         width: auto;
-        max-height: 609px;
+        max-height: calc(100vh - 125px - 17px - 40px - 40px);
+
+        @media screen and (orientation: portrait) {
+            max-height: calc(100vh - 125px - 160px - 17px - 40px - 40px);
+        }
+
+        @media screen and (max-width: 600px) {
+            max-height: calc(100vh - 125px - 130px - 17px - 40px - 40px);
+        }
+
+        @media screen and (max-width: 450px) {
+            max-height: calc(100vh - 110px - 130px - 17px - 40px - 40px);
+        }
 
         display: flex;
         flex-wrap: wrap;
