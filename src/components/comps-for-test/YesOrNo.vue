@@ -3,8 +3,18 @@
         <div class="term"><slot name="term"></slot></div>
         <div class="def"><slot name="def"></slot></div>
         <div class="btns">
-            <button @click="sendToParent(true, 'YesOrNo')">true</button>
-            <button @click="sendToParent(false, 'YesOrNo')">false</button>
+            <button
+                @click="sendToParent(true, 'YesOrNo')"
+                class="yes-or-no-btn"
+            >
+                1. true
+            </button>
+            <button
+                @click="sendToParent(false, 'YesOrNo')"
+                class="yes-or-no-btn"
+            >
+                2. false
+            </button>
         </div>
     </div>
 </template>
@@ -20,6 +30,20 @@
             sendToParent(value, comp) {
                 this.$emit("sendingResponse", value, comp);
             },
+            choosingOnBtn(e) {
+                if (e.key >= 1 && e.key <= 2) {
+                    let bool = e.key == 1 ? true : false;
+                    this.$emit("sendingResponse", bool, "YesOrNo");
+                }
+            },
+        },
+        mounted() {
+            this.$nextTick(() => {
+                window.addEventListener("keyup", this.choosingOnBtn);
+            });
+        },
+        beforeUnmount() {
+            window.removeEventListener("keyup", this.choosingOnBtn);
         },
     };
 </script>

@@ -24,6 +24,25 @@
             sendToParent(value, comp) {
                 this.$emit("sendingResponse", value, comp);
             },
+            choosingOnBtn(e) {
+                if (e.key >= 1 && e.key <= 4) {
+                    const answers = document.querySelectorAll(".btn-answer");
+                    let answer = answers[e.key - 1].textContent.slice(2);
+                    this.$emit(
+                        "sendingResponse",
+                        [answer, answers[e.key - 1].dataset.correct],
+                        "TheChoice"
+                    );
+                }
+            },
+        },
+        mounted() {
+            this.$nextTick(() => {
+                window.addEventListener("keyup", this.choosingOnBtn);
+            });
+        },
+        beforeUnmount() {
+            window.removeEventListener("keyup", this.choosingOnBtn);
         },
     };
 </script>
