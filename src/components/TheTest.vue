@@ -72,6 +72,7 @@
                 "getCorrectAndRandomAnswers",
                 "getPairOfCorrectAndRandomAnwersWithoutSuffle",
                 "getStatus",
+                "getIndex",
             ]),
             getRandomDefForYONComp() {
                 return this.getPairOfCorrectAndRandomAnwersWithoutSuffle[
@@ -97,6 +98,10 @@
                 return this.comps[_.random(0, this.comps.length - 1, false)];
             },
             checkAnswer(answer, comp) {
+                if (this.getIndex == 0) {
+                    this.result = [];
+                }
+
                 if (comp == "TheChoice") {
                     if (answer[1] == "true") {
                         this.increaseScore();
