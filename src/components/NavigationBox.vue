@@ -174,6 +174,7 @@
         min-height: calc(100vh - (40px * 2));
         position: fixed;
         z-index: 10000;
+
         @media screen and (orientation: portrait) {
             display: flex;
             flex-direction: row;

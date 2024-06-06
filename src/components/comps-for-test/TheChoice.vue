@@ -53,7 +53,7 @@
         }
 
         @media screen and (max-width: 762px) {
-            gap: 15px;
+            gap: 0;
         }
         .term {
             font-size: 50px;
@@ -99,6 +99,8 @@
                 }
 
                 @media screen and (max-width: 762px) {
+                    border: 2px solid var(--beige);
+                    padding: 0 15px;
                     width: 100%;
                 }
 

@@ -26,7 +26,7 @@
     .all-cards {
         /*max-width: 1067px;*/
         width: auto;
-        max-height: 693px;
+        max-height: 609px;
 
         display: flex;
         flex-wrap: wrap;
@@ -35,6 +35,7 @@
         overflow-y: scroll;
 
         padding-right: 5px;
+        padding-bottom: 20px;
         &::-webkit-scrollbar {
             display: none;
         }

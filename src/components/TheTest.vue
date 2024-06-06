@@ -1,6 +1,10 @@
 <template>
     <div class="container">
-        <ResultSection v-if="getStatus" />
+        <div class="result" v-if="getStatus">
+            <ResultSection class="result-for-test" />
+            <TheTestResult :result="result" />
+        </div>
+
         <div class="test-container" v-else>
             <button class="btn-start" @click="getRandomQuestionComp()">
                 Start
@@ -49,6 +53,7 @@
     import YesOrNo from "./comps-for-test/YesOrNo.vue";
     import TheChoice from "./comps-for-test/TheChoice.vue";
     import ResultSection from "./ResultSection.vue";
+    import TheTestResult from "./TheTestResult.vue";
 
     import { mapGetters, mapMutations } from "vuex";
 
@@ -74,7 +79,13 @@
                 ];
             },
         },
-        components: { TheWriting, YesOrNo, TheChoice, ResultSection },
+        components: {
+            TheWriting,
+            YesOrNo,
+            TheChoice,
+            ResultSection,
+            TheTestResult,
+        },
         methods: {
             ...mapMutations([
                 "toggleShuffle",
@@ -89,23 +100,39 @@
                 if (comp == "TheChoice") {
                     if (answer[1] == "true") {
                         this.increaseScore();
-                        this.result.push(["true", this.getPairOfWords]);
+                        this.result.push([
+                            [true, "TheChoice"],
+                            this.getPairOfWords,
+                        ]);
                     } else {
                         this.result.push([
-                            "false",
+                            [false, "TheChoice"],
                             this.getPairOfWords,
-                            answer,
+                            answer[0],
                         ]);
                     }
                 } else if (comp == "YesOrNo") {
-                    if (!!this.getRandomDefForYONComp[1] == answer) {
+                    if (
+                        (this.getRandomDefForYONComp[1] && answer) ||
+                        (!this.getRandomDefForYONComp[1] && !answer)
+                    ) {
                         this.increaseScore();
-                        this.result.push(["true", this.getPairOfWords]);
+                        this.result.push([
+                            [true, "YesOrNo"],
+                            [
+                                this.getPairOfWords[0],
+                                this.getRandomDefForYONComp[0],
+                            ],
+                            answer,
+                        ]);
                     } else {
                         this.result.push([
-                            "false",
-                            this.getPairOfWords,
-                            this.getRandomDefForYONComp[0],
+                            [false, "YesOrNo"],
+                            [
+                                this.getPairOfWords[0],
+                                this.getRandomDefForYONComp[0],
+                            ],
+                            answer,
                         ]);
                     }
                 } else if (comp == "TheWriting") {
@@ -114,10 +141,13 @@
                         answer.toLowerCase()
                     ) {
                         this.increaseScore();
-                        this.result.push(["true", this.getPairOfWords]);
+                        this.result.push([
+                            [true, "TheWriting"],
+                            this.getPairOfWords,
+                        ]);
                     } else {
                         this.result.push([
-                            "false",
+                            [false, "TheWriting"],
                             this.getPairOfWords,
                             answer,
                         ]);
@@ -144,6 +174,49 @@
         width: 100%;
         padding-top: calc(125px + 17px);
         position: relative;
+        overflow: hidden;
+
+        .result {
+            margin-top: -142px;
+            overflow: hidden;
+
+            @media screen and (orientation: portrait) {
+                margin-top: -50px;
+            }
+
+            .result-for-test {
+                flex-direction: row;
+                max-width: 1000px;
+                width: 100%;
+                align-items: center;
+
+                @media screen and (max-width: 700px) {
+                    flex-direction: column;
+                    width: max-content;
+                    align-items: flex-start;
+                }
+
+                .result-content {
+                    font-size: 50px;
+
+                    @media screen and (max-width: 1000px) {
+                        font-size: 40px;
+                    }
+                }
+
+                img {
+                    width: 226px;
+                    height: 226px;
+                    position: relative;
+                    left: -16px;
+
+                    @media screen and (max-width: 1000px) {
+                        width: 180px;
+                        height: 180px;
+                    }
+                }
+            }
+        }
 
         .btn-start {
             display: none;
