@@ -52,7 +52,12 @@ export default {
     state: {
         words: localStorage.getItem("words")
             ? JSON.parse(localStorage.getItem("words"))
-            : [],
+            : [
+                  ["cat", "кошка"],
+                  ["house", "дом"],
+                  ["table", "стол"],
+                  ["weather", "погода"],
+              ],
         index: 0,
         score: 0,
         complete: false,

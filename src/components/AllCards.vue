@@ -1,5 +1,8 @@
 <template>
     <div class="all-cards">
+        <div v-if="!getWords.length" class="empty-allcards-box">
+            Добавьте первое слово
+        </div>
         <div class="card" v-for="word of getWords" :key="word[2]">
             <img
                 src="../assets/xmark-solid.svg"
@@ -50,6 +53,10 @@
         padding-bottom: 20px;
         &::-webkit-scrollbar {
             display: none;
+        }
+
+        .empty-allcards-box {
+            color: var(--dark-blue);
         }
 
         /*scrollbar-gutter: stable;

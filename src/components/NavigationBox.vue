@@ -11,6 +11,7 @@
         <button
             class="nav-btn btn-cards"
             @click="setActiveComponent($event.currentTarget, 'StudyingByCards')"
+            :disabled="disabled"
         >
             <svg
                 width="70"
@@ -48,6 +49,7 @@
                     'ChoosingTheCorrectTranslation'
                 )
             "
+            :disabled="disabled"
         >
             <svg
                 width="70"
@@ -78,12 +80,14 @@
         <button
             class="nav-btn btn-writing"
             @click="setActiveComponent($event.currentTarget, 'WritingTraining')"
+            :disabled="disabled"
         >
             <img src="../assets/menu/pen-solid.svg" alt="write" />
         </button>
         <button
             class="nav-btn btn-test"
             @click="setActiveComponent($event.currentTarget, 'TheTest')"
+            :disabled="disabled"
         >
             <img
                 id="test"
@@ -114,10 +118,16 @@
                 selectComponent: "",
                 target: "",
                 warning: false,
+                disabled: false,
             };
         },
         components: { WarningPopup },
-        computed: mapGetters(["getIndex", "getWarning", "getActiveComponent"]),
+        computed: mapGetters([
+            "getIndex",
+            "getWarning",
+            "getActiveComponent",
+            "getWords",
+        ]),
         methods: {
             ...mapMutations([
                 "changeActiveComponent",
@@ -159,6 +169,24 @@
                     this.warning = true;
                 }
             },
+        },
+        watch: {
+            getWords: {
+                handler(newValue, oldValue) {
+                    console.log(`Updating from ${oldValue} to ${newValue}`);
+                    if (!this.getWords.length) {
+                        this.disabled = true;
+                    } else {
+                        this.disabled = false;
+                    }
+                },
+                deep: true,
+            },
+        },
+        mounted() {
+            if (!this.getWords.length) {
+                this.disabled = true;
+            }
         },
     };
 </script>
@@ -209,6 +237,10 @@
             &.active {
                 background-color: var(--dark-blue);
             }
+        }
+        button:disabled {
+            background-color: #8b8b8b;
+            cursor: not-allowed;
         }
 
         svg {
