@@ -14,6 +14,7 @@
                         :should-auto-focus="true"
                         :should-focus-order="true"
                         @keyup.enter="sendToParent(this.word, 'TheWriting')"
+                        inputmode="text"
                     />
                 </div>
             </div>

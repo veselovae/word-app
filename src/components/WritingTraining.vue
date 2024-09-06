@@ -19,6 +19,7 @@
                             :should-focus-order="true"
                             @keyup.enter="checkWord()"
                             :isDisabled="dis"
+                            inputmode="text"
                         />
                     </div>
                 </div>
